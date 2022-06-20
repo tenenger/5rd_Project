@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { Nav } from "./pages/Nav/Nav";
-import { Favorite, Main, AllLocation } from "./pages/pages";
+import { Favorite, MyLocation, AllLocation } from "./pages/pages";
 import { SRoutes } from "./App.style";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <>
       <SRoutes>
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<MyLocation />} />
           <Route path="/all" element={<AllLocation />} />
           <Route path="/favorite" element={<Favorite />} />
         </Routes>

@@ -1,3 +1,3 @@
 import styled from "styled-components";
 
-export const SMain = styled.div``;
+export const SMyLocation = styled.div``;

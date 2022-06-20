@@ -4,8 +4,8 @@ import { SLoadingModalBox } from "./LoadingModal.style";
 const LoadingModal = () => {
   return (
     <SLoadingModalBox>
-      <div class="spinner">
-        <div class="part">
+      <div className="spinner">
+        <div className="part">
           <div></div>
           <div>
             <div></div>
