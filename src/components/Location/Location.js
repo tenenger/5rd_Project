@@ -8,7 +8,7 @@ import LoadingModal from "../../components/Loading/LoadingModal";
 import { SLocation, SSelect, SWeather } from "./Location.style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as faStarEmpty } from "@fortawesome/free-regular-svg-icons";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+// import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const sidoList = [
   "서울",
@@ -64,9 +64,7 @@ const Location = () => {
   }, [sido]);
 
   useEffect(() => {
-    if (data) {
-      handleFilter(stationRef.current.value);
-    }
+    data && handleFilter(stationRef.current.value);
   }, [data]);
 
   useEffect(() => {
