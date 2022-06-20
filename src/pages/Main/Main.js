@@ -4,6 +4,7 @@ import { getWeather } from "../../api/weather";
 import { useDispatch, useSelector } from "react-redux";
 import { handleSido, selectWeather } from "./../../redux/reducers/weather";
 import { SMain } from "./Main.style";
+import LoadingModal from "../../components/Loading/LoadingModal";
 
 const sidoList = [
   "서울",
@@ -62,9 +63,10 @@ const Main = () => {
 
   useEffect(() => {
     // 미세먼지 상태 메시지 문자
-    if (filter.pm10Value <= 20) setMessage("좋음");
-    else if (filter.pm10Value <= 40) setMessage("보통");
-    else setMessage("나쁨");
+    if (filter.pm10Value <= 20) setMessage("좋음 blue");
+    else if (filter.pm10Value <= 40) setMessage("보통 green");
+    else if (filter.pm10Value <= 60) setMessage("나쁨 yellow");
+    else setMessage("매우 나쁨 red");
   }, [filter]);
 
   return (
@@ -92,7 +94,7 @@ const Main = () => {
           )}
         </>
       ) : (
-        <strong>Loading....</strong>
+        <LoadingModal />
       )}
     </SMain>
   );

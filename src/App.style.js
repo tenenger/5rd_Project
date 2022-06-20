@@ -1,3 +1,6 @@
+import { Routes } from "react-router-dom";
 import styled from "styled-components";
 
-export const SApp = styled.div``;
+export const SRoutes = styled.div`
+  flex: 1;
+`;

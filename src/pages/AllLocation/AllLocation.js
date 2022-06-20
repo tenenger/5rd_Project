@@ -1,7 +1,7 @@
 import React from "react";
 
-const Profile = () => {
+const AllLocation = () => {
   return <div>사용자</div>;
 };
 
-export default Profile;
+export default AllLocation;

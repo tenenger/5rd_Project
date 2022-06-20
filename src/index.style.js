@@ -2,11 +2,11 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
 export const SGlobalStyle = createGlobalStyle`
-  
-  html, body {
+  ${reset}
+  html, body, #root {
     height: 100%;
   }
-  body {
+  #root {
     display: flex;
     flex-direction: column;
   }
