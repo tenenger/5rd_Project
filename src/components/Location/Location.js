@@ -1,16 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import React from "react";
-import { getWeather } from "../../api/weather";
+import { getWeather } from "api/weather";
 import { useDispatch, useSelector } from "react-redux";
-import { handleSido, selectWeather } from "../../redux/reducers/weather";
+import {
+  handleSido,
+  handleLikeList,
+  selectSido,
+  selectLikeList,
+} from "redux/reducers/weather";
 
-import LoadingModal from "../../components/Loading/LoadingModal";
 import { SLocation, SSelect, SWeather } from "./Location.style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as faStarEmpty } from "@fortawesome/free-regular-svg-icons";
-// import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-const sidoList = [
+const sidoListDefault = [
   "서울",
   "부산",
   "대구",
@@ -30,67 +34,102 @@ const sidoList = [
   "세종",
 ];
 
-const Location = () => {
-  const [data, setDate] = useState(null);
-  const [filter, setFilter] = useState("");
-  const [message, setMessage] = useState("");
-  const [meseColor, setMeseColor] = useState("");
-  const [selected, setSelected] = useState("서울");
+const Location = ({
+  loadingModal,
+  geolocal = "",
+  sidoList = sidoListDefault,
+  likeSido = "",
+  station = "",
+  favorite = false,
+}) => {
   const stationRef = useRef();
-  const sido = useSelector(selectWeather);
+  const reduxSido = useSelector(selectSido);
+  const reduxLikeList = useSelector(selectLikeList);
   const dispatch = useDispatch();
 
-  const handleFilter = (stationName) => {
-    const result = data.filter((item) => item.stationName === stationName);
-    setFilter(...result);
-  };
+  const [data, setData] = useState("");
+  const [message, setMessage] = useState("");
+  const [meseColor, setMeseColor] = useState("");
+  const [selectedSido, setSelectedSido] = useState("서울");
+  const [selectedStation, setSelectedStation] = useState("");
+  const [sido, setSido] = useState(reduxSido);
 
   const handleSidoChange = (e) => {
-    // 시도가 선택되면, redux 시도 상태 변경.
+    // 시도가 선택되면, redux 시도 변경.
     dispatch(handleSido(e.target.value));
-    setSelected(e.target.value);
+    setSelectedSido(e.target.value);
+    getData(e.target.value);
   };
 
   const handleStationChange = (e) => {
     handleFilter(e.target.value);
   };
 
-  useEffect(() => {
-    setDate(null);
-    // 마운트하면, redux 시도로 api값 가져온다.
-    getWeather(sido).then((data) => {
-      setDate(data);
-    });
-  }, [sido]);
+  const handleFilter = (stationName) => {
+    const result = data.filter((item) => item.stationName === stationName);
+    setSelectedStation(...result);
+  };
+
+  const getData = async (sido) => {
+    setData(null);
+    const data = await getWeather(sido);
+    if (favorite) {
+      let likeStation = [];
+      for (const gu of station) {
+        likeStation.push(...data.filter((el) => el.stationName === gu));
+      }
+      setData(likeStation);
+    } else {
+      setData(data);
+    }
+  };
 
   useEffect(() => {
     data && handleFilter(stationRef.current.value);
   }, [data]);
 
   useEffect(() => {
-    const mese = filter.pm10Value;
-    // 미세먼지 상태 메시지 문자
-    if (mese <= 20) {
-      setMeseColor("#4336f4");
-      setMessage("좋음");
-    } else if (mese <= 40) {
-      setMeseColor("#4caf50");
-      setMessage("보통");
-    } else if (mese <= 60) {
-      setMeseColor("#ff9800");
-      setMessage("나쁨");
-    } else {
-      setMeseColor("#e91e63");
-      setMessage("매우 나쁨");
+    if (selectedStation) {
+      const mese = selectedStation.pm10Value;
+      // 미세먼지 상태 메시지 문자
+      if (mese <= 20) {
+        setMeseColor("#4336f4");
+        setMessage("좋음");
+      } else if (mese <= 40) {
+        setMeseColor("#4caf50");
+        setMessage("보통");
+      } else if (mese <= 60) {
+        setMeseColor("#ff9800");
+        setMessage("나쁨");
+      } else if (mese > 60) {
+        setMeseColor("#e91e63");
+        setMessage("매우 나쁨");
+      } else {
+        setMeseColor("#474747");
+        setMessage("알수 없음");
+      }
     }
-  }, [filter]);
+  }, [selectedStation]);
+
+  useEffect(() => {
+    if (likeSido) {
+      setSido(likeSido);
+      dispatch(handleSido(likeSido));
+    }
+  }, [sido]);
+
+  useEffect(() => {
+    if (geolocal) getData(geolocal);
+    else if (favorite) getData(likeSido);
+    else getData("서울");
+  }, [geolocal]);
 
   return (
     <>
       {data ? (
         <SLocation>
           <SSelect>
-            <select onChange={handleSidoChange} value={selected}>
+            <select onChange={handleSidoChange} value={selectedSido}>
               {sidoList.map((item) => (
                 <option key={item}>{item}</option>
               ))}
@@ -101,23 +140,27 @@ const Location = () => {
               ))}
             </select>
           </SSelect>
-          {filter && (
+          {selectedStation && (
             <SWeather meseColor={meseColor}>
               <div>
-                <span data-weather="station">{filter.stationName}</span>
-                <span data-weather="sido">{filter.sidoName}</span>
+                <span data-weather="station">
+                  {selectedStation.stationName}
+                </span>
+                <span data-weather="sido">{selectedStation.sidoName}</span>
                 <FontAwesomeIcon icon={faStarEmpty} />
               </div>
               <span data-weather="message">{message}</span>
               <div>
-                <div>미세먼지 수치 {filter.pm10Value}</div>
-                <div data-weather="dataTime">({filter.dataTime} 기준)</div>
+                <div>미세먼지 수치 {selectedStation.pm10Value}</div>
+                <div data-weather="dataTime">
+                  ({selectedStation.dataTime} 기준)
+                </div>
               </div>
             </SWeather>
           )}
         </SLocation>
       ) : (
-        <LoadingModal />
+        <div>{loadingModal}</div>
       )}
     </>
   );

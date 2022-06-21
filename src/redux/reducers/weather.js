@@ -1,15 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 // store reducers의 프로퍼티로 사용된다.
-const name = "sido";
+const name = "weather";
 
-const initialState = { sido: "서울" };
+const initialState = { sido: "서울", likeList: [] };
 
 const reducers = {
   // 첫번째 인자는 prevState이고, 두번째 인자부터는 사용자 입력 값이다.
   // 사용자 입력값은 payload 메소드를 통해 얻어낼 수 있다.
   handleSido(state, action) {
     state.sido = action.payload;
+  },
+
+  handleLikeList(state, action) {
+    state.likeList = action.payload;
   },
 };
 
@@ -24,7 +28,8 @@ const sidoSlice = createSlice({
 export default sidoSlice.reducer;
 
 // action 함수 내보내기 -> useDispatch로 정의한 함수의 인자로 사용되어 props 변경가능
-export const { handleSido } = sidoSlice.actions;
+export const { handleSido, handleLikeList } = sidoSlice.actions;
 
 // props 내보내기 -> useSelect의 인자로 사용되어 props 접근 가능
-export const selectWeather = (state) => state.sido.sido;
+export const selectSido = (state) => state.weather.sido;
+export const selectLikeList = (state) => state.weather.likeList;

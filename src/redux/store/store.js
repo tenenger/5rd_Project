@@ -4,6 +4,6 @@ import sidoSlice from "../reducers/weather";
 
 export default configureStore({
   reducer: {
-    sido: sidoSlice,
+    weather: sidoSlice,
   },
 });

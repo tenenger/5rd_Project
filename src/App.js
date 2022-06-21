@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import { Nav } from "./pages/Nav/Nav";
-import { Favorite, MyLocation, AllLocation } from "./pages/pages";
+import { Nav } from "pages/Nav/Nav";
+import { Favorite, MyLocation, AllLocation } from "pages/pages";
 import { SRoutes } from "./App.style";
 
 function App() {
