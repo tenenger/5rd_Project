@@ -11,7 +11,8 @@ const getParameters = {
 };
 
 export const getWeather = async (sido) => {
-  const url = `B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?serviceKey=${getParameters.serviceKey}&returnType=${getParameters.returnType}&numOfRows=${getParameters.numOfRows}&pageNo=${getParameters.pageNo}&sidoName=${sido}&ver=${getParameters.ver}`;
+  // axios.defaults.baseURL = "http://apis.data.go.kr/";
+  const url = `https://cors-anywhere-fork1.herokuapp.com/http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?serviceKey=${getParameters.serviceKey}&returnType=${getParameters.returnType}&numOfRows=${getParameters.numOfRows}&pageNo=${getParameters.pageNo}&sidoName=${sido}&ver=${getParameters.ver}`;
   const res = await axios.get(url);
   const data = await res.data.response.body.items;
   console.log(data);

@@ -51,6 +51,5 @@
   },
   "include": [
     "src"
-  ],
-  "proxy": "http://apis.data.go.kr/"
+  ]
 }
