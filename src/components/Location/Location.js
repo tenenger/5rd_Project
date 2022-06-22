@@ -38,6 +38,7 @@ const Location = ({
   loadingModal,
   geolocal = "",
   sidoList = sidoListDefault,
+  currentStation = "",
   likeSido = "",
   station = "",
   favorite = false,
@@ -51,6 +52,8 @@ const Location = ({
   const [message, setMessage] = useState("");
   const [meseColor, setMeseColor] = useState("");
   const [selectedSido, setSelectedSido] = useState("서울");
+  const [selectedStationValue, setSelectedStationValue] =
+    useState(currentStation);
   const [selectedStation, setSelectedStation] = useState("");
   const [sido, setSido] = useState(reduxSido);
 
@@ -62,6 +65,7 @@ const Location = ({
   };
 
   const handleStationChange = (e) => {
+    setSelectedStationValue(e.target.value);
     handleFilter(e.target.value);
   };
 
@@ -85,7 +89,9 @@ const Location = ({
   };
 
   useEffect(() => {
-    data && handleFilter(stationRef.current.value);
+    if (data) {
+      handleFilter(stationRef.current.value);
+    }
   }, [data]);
 
   useEffect(() => {
@@ -134,7 +140,11 @@ const Location = ({
                 <option key={item}>{item}</option>
               ))}
             </select>
-            <select ref={stationRef} onChange={handleStationChange}>
+            <select
+              ref={stationRef}
+              onChange={handleStationChange}
+              value={selectedStationValue}
+            >
               {data.map((item) => (
                 <option key={item.stationName}>{item.stationName}</option>
               ))}

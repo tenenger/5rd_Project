@@ -1,24 +1,28 @@
 import Location from "components/Location/Location";
 import { SMyLocation } from "./MyLocation.style";
 import LoadingModal from "components/Loading/LoadingModal";
-import useCurrentLocation from "hooks/useCurrentLocation";
-import kakaoLocal from "api/kakaoLocal";
+import geolocation from "api/geolocation";
+import { kakaoAddress } from "api/kakaoAddress";
 import { useEffect, useState } from "react";
 
 const MyLocation = () => {
-  const { location, error } = useCurrentLocation();
   const [geolocal, setGeolocal] = useState("");
   const [sidoList, setSidoList] = useState([""]);
+  const [currentStation, setCurrentStation] = useState("");
+
+  const getAddress = async () => {
+    const res = await geolocation();
+    const { longitude, latitude } = res;
+    const address = await kakaoAddress(longitude, latitude);
+    console.log(address.region_1depth_name.slice(0, 2));
+    setCurrentStation(address.region_2depth_name);
+    setGeolocal(address.region_1depth_name.slice(0, 2));
+    setSidoList([address.region_1depth_name.slice(0, 2)]);
+  };
 
   useEffect(() => {
-    if (location) {
-      const { longitude, latitude } = location;
-      //  kakaoLocal(longitude, latitude ).then(res => {
-      //res.slice(0,2)
-      setGeolocal("서울");
-      setSidoList(["서울"]);
-    }
-  }, [location]);
+    getAddress();
+  }, []);
 
   return (
     <SMyLocation>
@@ -27,6 +31,7 @@ const MyLocation = () => {
           loadingModal={<LoadingModal />}
           geolocal={geolocal}
           sidoList={sidoList}
+          currentStation={currentStation}
         ></Location>
       ) : (
         <div>
