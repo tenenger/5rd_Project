@@ -1,7 +1,7 @@
 import Location from "components/Location/Location";
 import { SMyLocation } from "./MyLocation.style";
 import LoadingModal from "components/Loading/LoadingModal";
-import geolocation from "api/geolocation";
+import getGeolocation from "api/getGeolocation";
 import { kakaoAddress } from "api/kakaoAddress";
 import { useEffect, useState } from "react";
 
@@ -11,10 +11,9 @@ const MyLocation = () => {
   const [currentStation, setCurrentStation] = useState("");
 
   const getAddress = async () => {
-    const res = await geolocation();
-    const { longitude, latitude } = res;
+    const { longitude, latitude } = await getGeolocation();
     const address = await kakaoAddress(longitude, latitude);
-    console.log(address.region_1depth_name.slice(0, 2));
+
     setCurrentStation(address.region_2depth_name);
     setGeolocal(address.region_1depth_name.slice(0, 2));
     setSidoList([address.region_1depth_name.slice(0, 2)]);
