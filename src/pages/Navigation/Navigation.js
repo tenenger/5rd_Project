@@ -1,14 +1,10 @@
-import {
-  faLocationDot,
-  faMapLocationDot,
-  faStar,
-} from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot, faMapLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { SNav } from "./Nav.style";
 
-export const Nav = () => {
+import { SLayout } from "./Navigation.style";
+
+const Navigation = () => {
   const { pathname } = useLocation();
   let tab;
   switch (pathname) {
@@ -26,7 +22,7 @@ export const Nav = () => {
       break;
   }
   return (
-    <SNav tab={tab}>
+    <SLayout tab={tab}>
       <Link to="/">
         <FontAwesomeIcon icon={faLocationDot} />
         <h3>내 지역보기</h3>
@@ -39,6 +35,8 @@ export const Nav = () => {
         <FontAwesomeIcon icon={faStar} />
         <h3>즐겨찾기</h3>
       </Link>
-    </SNav>
+    </SLayout>
   );
 };
+
+export default Navigation;
