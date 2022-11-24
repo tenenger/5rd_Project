@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SNav = styled.nav`
+export const SLayout = styled.nav`
   display: flex;
   justify-content: space-evenly;
   border: 2px #f5f5f5 solid;

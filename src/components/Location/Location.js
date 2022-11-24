@@ -1,18 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import React from "react";
-import { getWeather } from "api/weather";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  handleSido,
-  handleLikeList,
-  selectSido,
-  selectLikeList,
-} from "redux/reducers/weather";
-
-import { SLocation, SSelect, SWeather } from "./Location.style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as faStarEmpty } from "@fortawesome/free-regular-svg-icons";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+
+import { getWeather } from "api/weather";
+import { handleSido, selectSido } from "redux/reducers/weather";
+
+import { SLocation, SSelect, SWeather } from "./Location.style";
+
 
 const sidoListDefault = [
   "서울",
@@ -45,7 +40,6 @@ const Location = ({
 }) => {
   const stationRef = useRef();
   const reduxSido = useSelector(selectSido);
-  const reduxLikeList = useSelector(selectLikeList);
   const dispatch = useDispatch();
 
   const [data, setData] = useState("");
