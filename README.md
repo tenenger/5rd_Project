@@ -55,14 +55,15 @@ yarn start
 | refactor | 리팩토링         | refactor: Update State(form)               |
 | debug    | 디버깅           | debug: Remove box flikering                |
 |          |                 |                                             |
-| deploy   | 배포             | deploy: replay Netlify                     |
+| deploy   | 배포             | deploy: Replay Netlify                     |
 
 ### 키워드
 - Add : (처음, 새롭게) 추가
 - Remove : (기존) 삭제
 - Change : (기존) 삭제 -> (처음, 새롭게) 추가
 - Update : (기존) + (처음, 새롭게) 추가
-- replay : (기존) 다시
+- Replay : (기존) 다시
+- Comment : (이외) 설명
 
 <br/>
 
