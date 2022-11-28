@@ -34,7 +34,7 @@ export const getAllWeather = async () => {
   const result = [];
 
   for (const dosi of DOSI_LIST) {
-    const url = `B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?serviceKey=${serviceKey}&returnType=${returnType}&numOfRows=${numOfRows}&pageNo=${pageNo}&sidoName=${dosi}&ver=${ver}`;
+    const url = `https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?serviceKey=${serviceKey}&returnType=${returnType}&numOfRows=${numOfRows}&pageNo=${pageNo}&sidoName=${dosi}&ver=${ver}`;
 
     try {
       const res = await axios.get(url);
@@ -51,7 +51,7 @@ export const getAllWeather = async () => {
 export const getSelectWeather = async (dosi) => { 
   const supportDosi = DOSI_LIST.find(listDosi => dosi.includes(listDosi))
 
-  const url = `B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?serviceKey=${getParameters.serviceKey}&returnType=${getParameters.returnType}&numOfRows=${getParameters.numOfRows}&pageNo=${getParameters.pageNo}&sidoName=${supportDosi}&ver=${getParameters.ver}`;
+  const url = `https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?serviceKey=${getParameters.serviceKey}&returnType=${getParameters.returnType}&numOfRows=${getParameters.numOfRows}&pageNo=${getParameters.pageNo}&sidoName=${supportDosi}&ver=${getParameters.ver}`;
 
   try {
     const res = await axios.get(url);

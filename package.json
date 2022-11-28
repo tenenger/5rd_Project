@@ -46,5 +46,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://apis.data.go.kr/"
+  "proxy": "https://cors-anywhere-fork1.herokuapp.com/"
 }
