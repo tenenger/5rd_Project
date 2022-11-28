@@ -1,6 +1,6 @@
-import { faLocationDot, faMapLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationDot, faMapLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
 
 import { SLayout } from "./Navigation.style";
 
@@ -29,7 +29,7 @@ const Navigation = () => {
       </Link>
       <Link to="/all">
         <FontAwesomeIcon icon={faMapLocationDot} />
-        <h3>전체 시도보기</h3>
+        <h3>전체 지역보기</h3>
       </Link>
       <Link to="/favorite">
         <FontAwesomeIcon icon={faStar} />

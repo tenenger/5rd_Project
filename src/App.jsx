@@ -1,8 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 
-import { Favorite, MyLocation, AllLocation, Navigation } from "pages/index";
+import { Favorite, MyLocation, AllLocation } from "pages/index";
+import Navigation from "./components/UI/Navigation/Navigation";
+
 
 const App = () => {
+
   return (
     <>
       <Routes>

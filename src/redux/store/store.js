@@ -1,9 +1,10 @@
 // ./store/store.js
 import { configureStore } from "@reduxjs/toolkit";
-import sidoSlice from "../reducers/weather";
+
+import weatherSlice from "../slices/weather";
 
 export default configureStore({
   reducer: {
-    weather: sidoSlice,
+    weather: weatherSlice,
   },
 });

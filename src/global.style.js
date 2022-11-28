@@ -21,6 +21,9 @@ const reset = css`
     font-family: inherit;
     font-size: inherit;
     border: none;
+  }
+
+  select {
     appearance: none;
   }
 
