@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { DOSI_LIST } from "../../../api/getWeather";
 
 import { Card } from "../../common";
@@ -5,7 +6,16 @@ import { Card } from "../../common";
 import { SCardLayout, SSelect } from "./WeatherCard.style";
 
 const WeatherCard = ({ data, isShow, dosi, handleSelectChange }) => {
-  console.log(data);
+  const [storage, setStorage] = useState(localStorage.getItem('favorite'));
+
+  const handleClick = (station) => {
+    setStorage((prev) => {
+      const newStorage = prev.includes(station) ? prev.replace(station, '') : prev + station;
+       localStorage.setItem('favorite', newStorage);
+       return newStorage
+    })
+  }
+
   return (
     <>
       {isShow && (
@@ -17,7 +27,7 @@ const WeatherCard = ({ data, isShow, dosi, handleSelectChange }) => {
       )}
       <SCardLayout>
         {data.map((item) => (
-          <Card key={item.stationName} item={item} />
+          <Card key={item.stationName} item={item} handleClick={handleClick} isFavorite={storage.includes(item.stationName)} />
         ))}
       </SCardLayout>
     </>

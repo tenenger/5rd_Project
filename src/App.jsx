@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Routes, Route } from "react-router-dom";
 
 import { Favorite, MyLocation, AllLocation } from "pages/index";
@@ -5,6 +6,9 @@ import Navigation from "./components/UI/Navigation/Navigation";
 
 
 const App = () => {
+  useEffect(() => {
+    if (!localStorage.getItem('favorite')) localStorage.setItem('favorite', '');
+  }, [])
 
   return (
     <>

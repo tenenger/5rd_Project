@@ -1,26 +1,13 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as faStarEmpty } from "@fortawesome/free-regular-svg-icons";
 import { faStar as faStarFill } from "@fortawesome/free-solid-svg-icons";
 
 import { SLayout, SSido, SDataTime, SMese, SMessage, SHeader, SIconButton } from "./Card.style";
 import { meseMessage } from "../../../helper/meseMessage";
-import { handleFavorite } from "../../../redux/slices/weather";
 
-const Card = ({item}) => {
+const Card = ({item, handleClick, isFavorite}) => {
   const {sidoName, stationName, dataTime, pm10Value} = item;
   const { message, color } = meseMessage(Number(item.pm10Value));
-
-  const favorite = useSelector(state => state.weather.favorite);
-  const dispatch = useDispatch();
-
-  const [isFavorite, setIsFavorite] = useState(favorite.includes(stationName));
-
-  const handleClick = (station) => {
-    setIsFavorite(prev => !prev)
-    dispatch(handleFavorite(station))
-  }
 
   return (
       <SLayout key={sidoName + stationName} meseColor={color}>

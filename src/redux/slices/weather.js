@@ -5,7 +5,6 @@ import { getAllWeather, getSelectWeather } from "../../api/getWeather";
 const initialState = {
   status: 'pending',
   data: [],
-  favorite: [],
   favoriteData: [],
 };
 
@@ -36,22 +35,14 @@ export const fetchSelectWeather = createAsyncThunk(
 const weatherSlice = createSlice({
   name: "weather",
   initialState,
-  reducers: {
-    handleFavorite(state, action) {
-      if (state.favorite.indexOf(action.payload) === -1) state.favorite = [...state.favorite, action.payload];
-      else state.favorite = state.favorite.filter(station => station !== action.payload);
-      console.log(state.favorite)
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchFilterWeather.pending, (state, action) => {
       state.status = 'pending';
     });
     builder.addCase(fetchFilterWeather.fulfilled, (state, action) => {
-      const stations = state.favorite;
-
       state.status = 'fulfilled';
-      state.favoriteData = action.payload.filter(item => stations.indexOf(item.stationName) !== -1);
+      state.favoriteData = action.payload.filter(item => localStorage.getItem('favorite').indexOf(item.stationName) !== -1);
     });
     builder.addCase(fetchFilterWeather.rejected, (state, action) => {
       state.status = 'rejected';
@@ -73,4 +64,4 @@ const weatherSlice = createSlice({
 
 export default weatherSlice.reducer;
 
-export const { handleFavorite } = weatherSlice.actions;
+export const {} = weatherSlice.actions;
