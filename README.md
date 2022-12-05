@@ -4,7 +4,7 @@
 <br/>
 
 ## 2. Demo
-#### https://lucky-haupia-f8bbac.netlify.app/
+#### https://finedust-weather.netlify.app/
 
 <br/>
 
