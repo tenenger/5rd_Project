@@ -7,24 +7,15 @@ import { LoadingModal } from "../../components/common";
 import { WeatherCard } from "../../components/UI";
 
 const Favorite = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const weatherStatus = useSelector((state) => state.weather.status);
   const favoriteData = useSelector((state) => state.weather.favoriteData);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    async function getData() {
-      try {
-        setIsLoading(true);
-        dispatch(fetchFilterWeather());
-        setIsLoading(false);
-      } catch (error) {
-        throw new Error(error);
-      }
-    }
-    getData();
+    dispatch(fetchFilterWeather());
   }, [dispatch]);
 
-  return <div>{isLoading ? <LoadingModal /> : <WeatherCard isShow={false} data={favoriteData} />}</div>;
+  return <div>{weatherStatus === 'pending' ? <LoadingModal /> : <WeatherCard isShow={false} data={favoriteData} />}</div>;
 };
 
 export default Favorite;

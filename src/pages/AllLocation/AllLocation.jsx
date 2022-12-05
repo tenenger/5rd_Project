@@ -8,8 +8,8 @@ import { LoadingModal } from "../../components/common";
 
 const AllLocation = () => {
   const [selectDosi, setSelectDosi] = useState("서울");
-  const [isLoading, setIsLoading] = useState(false);
   const weatherData = useSelector((state) => state.weather.data);
+  const weatherStatus = useSelector((state) => state.weather.status);
   const dispatch = useDispatch();
 
   const handleSelectChange = (e) => {
@@ -17,21 +17,12 @@ const AllLocation = () => {
   };
 
   useEffect(() => {
-    async function getData() {
-      try {
-        setIsLoading(true);
-        dispatch(fetchSelectWeather(selectDosi));
-        setIsLoading(false);
-      } catch (error) {
-        throw new Error(error);
-      }
-    }
-    getData();
+    dispatch(fetchSelectWeather(selectDosi));
   }, [selectDosi, dispatch]);
 
   return (
     <div>
-      {isLoading ? (
+      {weatherStatus === 'pending' ? (
         <LoadingModal />
       ) : (
         <WeatherCard isShow handleSelectChange={handleSelectChange} data={weatherData} dosi={selectDosi} />

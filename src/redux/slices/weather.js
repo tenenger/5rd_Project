@@ -12,16 +12,24 @@ const initialState = {
 export const fetchFilterWeather = createAsyncThunk(
   'weather/fetchFilterWeather',
   async (_, thunkAPI) => {
-    const data = await getAllWeather();
-    return data
+    try {
+      const data = await getAllWeather();
+      return data
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 )
 
 export const fetchSelectWeather = createAsyncThunk(
   'weather/fetchSelectWeather',
   async (dosi, thunkAPI) => {
-    const data = await getSelectWeather(dosi);
-    return data
+    try {
+      const data = await getSelectWeather(dosi);
+      return data
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 )
 
