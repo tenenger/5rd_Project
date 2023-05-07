@@ -1,24 +1,37 @@
 import { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { Favorite, MyLocation, AllLocation } from './pages';
-import Navigation from './components/UI/Navigation/Navigation';
+import Root from './pages/Root';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root />,
+    children: [
+      {
+        path: '/',
+        index: true,
+        element: <MyLocation />,
+      },
+      {
+        path: '/all',
+        element: <AllLocation />,
+      },
+      {
+        path: '/favorite',
+        element: <Favorite />,
+      },
+    ],
+  },
+]);
 
 const App = () => {
   useEffect(() => {
     if (!localStorage.getItem('favorite')) localStorage.setItem('favorite', '');
   }, []);
 
-  return (
-    <>
-      <Routes>
-        <Route path="/" element={<MyLocation />} />
-        <Route path="/all" element={<AllLocation />} />
-        <Route path="/favorite" element={<Favorite />} />
-      </Routes>
-      <Navigation />
-    </>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;
