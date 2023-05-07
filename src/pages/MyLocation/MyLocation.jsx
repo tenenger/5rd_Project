@@ -1,19 +1,19 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchSelectWeather } from "redux/slices/weather";
+import { fetchSelectWeather } from '../../redux/slices/weather';
 
-import { LoadingModal } from "../../components/common";
-import { WeatherCard } from "../../components/UI";
-import { getAddressData } from './../../helper/getData';
+import { LoadingModal } from '../../components/common';
+import { WeatherCard } from '../../components/UI';
+import { getAddressData } from '../../helper/getData';
 
 const MyLocation = () => {
-  const weatherStatus = useSelector((state) => state.weather.status);
-  const weatherData = useSelector((state) => state.weather.data);
+  const weatherStatus = useSelector(state => state.weather.status);
+  const weatherData = useSelector(state => state.weather.data);
   const dispatch = useDispatch();
 
   const getAddress = async () => {
-    const {region_1depth_name: division} = await getAddressData();
+    const { region_1depth_name: division } = await getAddressData();
     dispatch(fetchSelectWeather(division));
   };
 
