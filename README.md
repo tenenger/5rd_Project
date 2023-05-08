@@ -75,7 +75,7 @@ yarn start
 - 전체적으로 refactoring - (2022-11-29) 작업완료
 - 즐겨찾기 기능 구현 - (2022-11-29) 작업완료
 - 1시간 마다 미세먼지 날씨 업데이트(API가 1시간 마다 업데이트 된다) - 진행 중
-- 즐겨찾기에 추가된 구(군)을 localStorage에 저장해서, 나중에 브라우저를 열어도 유지 - 진행 중
+- 즐겨찾기에 추가된 구(군)을 localStorage에 저장해서, 나중에 브라우저를 열어도 유지 : (2022-12-6) 작업완료
 - axios를 axios 인스턴스를 활용하여 refactoring 하기 - 진행 중
 - styled-components -> emotion 으로 마이그레이션 - 진행 중
 - react -> next.js 으로 마이그레이션 - 진행 중
@@ -111,6 +111,11 @@ yarn start
 <br/>
 
 ## 9. 기록
+### (2022-12-6)
+- page마다 데이터 fetch시 useEffect에서 try-catch문을 활용하여 에러를 탐지하여 중복적으로 코드가 사용이 되었다. 그래서, 처음에 데이터를 fetch하는 곳(createAsyncThunk)에 try-catch문을 작성해서 리팩토링을 진행했다.
+- 또한, page마다 데이터 fetch 가 진행 중일때 useState를 활용하여 로딩 상태를 boolean으로 값에 따라 로딩 모달창을 띄우고자 했다. 그러나 dispatch는 await가 적용되지 않아 로딩 모달창이 정상적으로 띄워지지 않는 버그가 있었다. 그래서, useState를 활용하는 것이 아닌, redux의 status로 데이터 pending, fulfilled, reject 상태를 변경하는 것을 활용하여 로딩 모달창을 정상적으로 띄웠다.
+- 즐겨찾기를 클릭할 경우 localStorage에 저장하게 만들어서, 브라우저를 닫거나 새로고침 하더라도 브라우저에 저장된 값을 활용하여 즐겨찾기가 유지되도록 했다.
+
 ### (2022-11-29)
 - 27~29까지 작업한 내용을 git hub에 push를 진행하려고 했는데, 오류가 발생했다.
 - 첫번째 오류는, 내가 작업한 파일이 LF 형식이어서 컴퓨터가 CRLF 형식으로 바꾼다고 Warning이 발생했다. 개발자는 맥OS, 리눅스, Windows를 사용하는데, 맥OS가 많이 쓰이기도 해서 LF 형식으로 그대로 둘 수 있게 <code>git config --global core.autocrlf input</code>를 입력해서 Warning을 제거햇다.
