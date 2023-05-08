@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { Favorite, MyLocation, AllLocation } from './pages';
 import Root from './pages/Root';
+import { PATH } from './constants/path';
 
 const router = createBrowserRouter([
   {
@@ -10,28 +10,22 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        path: '/',
+        path: PATH.MY_LOCATION,
         index: true,
         element: <MyLocation />,
       },
       {
-        path: '/all',
+        path: PATH.ALL_LOCATION,
         element: <AllLocation />,
       },
       {
-        path: '/favorite',
+        path: PATH.FAVORITES,
         element: <Favorite />,
       },
     ],
   },
 ]);
 
-const App = () => {
-  useEffect(() => {
-    if (!localStorage.getItem('favorite')) localStorage.setItem('favorite', '');
-  }, []);
-
-  return <RouterProvider router={router} />;
-};
+const App = () => <RouterProvider router={router} />;
 
 export default App;

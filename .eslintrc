@@ -37,5 +37,8 @@
     "import/prefer-default-export": "off"
     // "no-var": "warn"
     // "react-hooks/exhaustive-deps": ["warn", { additionalHooks: "useRecoilCallback" }], // for recoil
+  },
+  "Globals": {
+    "Kakao": true
   }
 }

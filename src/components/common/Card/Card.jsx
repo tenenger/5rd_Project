@@ -1,29 +1,38 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar as faStarEmpty } from "@fortawesome/free-regular-svg-icons";
-import { faStar as faStarFill } from "@fortawesome/free-solid-svg-icons";
+import { useRecoilState } from 'recoil';
 
-import { SLayout, SSido, SDataTime, SMese, SMessage, SHeader, SIconButton } from "./Card.style";
-import { meseMessage } from "../../../helper/meseMessage";
+import { SLayout, SSido, SDataTime, SMese, SMessage, SHeader, SIconButton } from './Card.style';
+import { getDustMessageFromGrade } from '../../../utils/dust';
+import { EmptyStarIcon, FilledStarIcon } from '../icons';
+import { favoriteGuRoState } from '../../../recoil/atoms/dust';
+import { useState } from 'react';
 
-const Card = ({item, handleClick, isFavorite}) => {
-  const {sidoName, stationName, dataTime, pm10Value} = item;
-  const { message, color } = meseMessage(Number(item.pm10Value));
+const Card = ({ item: { sidoName, stationName, dataTime, pm10Value, pm10Grade } }) => {
+  const [favorites, setFavorites] = useRecoilState(favoriteGuRoState);
+  const [isFavorite, setIsFavorite] = useState(favorites[sidoName]?.includes(stationName) ?? false);
+  const { message, color } = getDustMessageFromGrade(+pm10Grade);
+
+  const handleFavoriteClick = () => {
+    setFavorites(
+      isFavorite
+        ? { ...favorites, [sidoName]: favorites[sidoName].filter(favorite => favorite !== stationName) }
+        : { ...favorites, [sidoName]: favorites[sidoName] ? [stationName, ...favorites[sidoName]] : [stationName] }
+    );
+    setIsFavorite(!isFavorite);
+  };
 
   return (
-      <SLayout key={sidoName + stationName} meseColor={color}>
-        <SHeader>
-          <span>{stationName}</span>
-          <SSido>{sidoName}</SSido>
-          <SIconButton onClick={() => handleClick(stationName)}>
-            {isFavorite ? <FontAwesomeIcon icon={faStarFill} /> : <FontAwesomeIcon icon={faStarEmpty} /> }
-          </SIconButton>
-        </SHeader>
-        <SMessage>{message}</SMessage>
-        <div>
-          <SMese>미세먼지 수치 {pm10Value}</SMese>
-          <SDataTime>({dataTime} 기준)</SDataTime>
-        </div>
-      </SLayout>
+    <SLayout meseColor={color}>
+      <SHeader>
+        <span>{stationName}</span>
+        <SSido>{sidoName}</SSido>
+        <SIconButton onClick={handleFavoriteClick}>{isFavorite ? <FilledStarIcon /> : <EmptyStarIcon />}</SIconButton>
+      </SHeader>
+      <SMessage>{message}</SMessage>
+      <div>
+        <SMese>미세먼지 수치 {pm10Value}</SMese>
+        <SDataTime>({dataTime} 기준)</SDataTime>
+      </div>
+    </SLayout>
   );
 };
 export default Card;

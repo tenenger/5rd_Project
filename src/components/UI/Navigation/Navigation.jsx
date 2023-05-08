@@ -1,40 +1,26 @@
-import { Link, useLocation } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot, faMapLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
+import { useLocation } from 'react-router-dom';
 
-import { SLayout } from "./Navigation.style";
+import { SLayout, SLink } from './Navigation.style';
+import { MyLocationIcon, AllLocationIcon, FilledStarIcon } from '../../common/icons';
+import { PATH } from '../../../constants/path';
 
 const Navigation = () => {
   const { pathname } = useLocation();
-  let tab;
-  switch (pathname) {
-    case "/":
-      tab = 1;
-      break;
-    case "/all":
-      tab = 2;
-      break;
-    case "/favorite":
-      tab = 3;
-      break;
-    default:
-      tab = 0;
-      break;
-  }
+
   return (
-    <SLayout tab={tab}>
-      <Link to="/">
-        <FontAwesomeIcon icon={faLocationDot} />
+    <SLayout>
+      <SLink to={PATH.MY_LOCATION} $active={PATH.MY_LOCATION === pathname}>
+        <MyLocationIcon />
         <h3>내 지역보기</h3>
-      </Link>
-      <Link to="/all">
-        <FontAwesomeIcon icon={faMapLocationDot} />
+      </SLink>
+      <SLink to={PATH.ALL_LOCATION} $active={PATH.ALL_LOCATION === pathname}>
+        <AllLocationIcon />
         <h3>전체 지역보기</h3>
-      </Link>
-      <Link to="/favorite">
-        <FontAwesomeIcon icon={faStar} />
+      </SLink>
+      <SLink to={PATH.FAVORITES} $active={PATH.FAVORITES === pathname}>
+        <FilledStarIcon />
         <h3>즐겨찾기</h3>
-      </Link>
+      </SLink>
     </SLayout>
   );
 };

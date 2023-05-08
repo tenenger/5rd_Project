@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const SLayout = styled.nav`
   display: flex;
@@ -15,13 +16,34 @@ export const SLayout = styled.nav`
     text-decoration: none;
     line-height: 2;
 
-    &:nth-child(${(props) => props.tab}) {
+    &:nth-child(${props => props.tab}) {
       background: #f5f5f5;
       border-top: 2px solid red;
     }
-    
+
     &:hover {
       background: #f5f5f5;
     }
+  }
+`;
+
+export const SLink = styled(Link)`
+  flex: 1;
+  padding: 20px 0;
+
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  line-height: 2;
+
+  ${props =>
+    props.$active &&
+    `
+      background: #f5f5f5;
+      border-top: 2px solid red;
+    `}
+
+  &:hover {
+    background: #f5f5f5;
   }
 `;
