@@ -4,21 +4,10 @@ export const SLayout = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: auto;
+  margin: 0 auto;
   max-width: 1200px;
   height: 80px;
-`;
-
-export const SLogo = styled.h1`
-  font-size: 3rem;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  height: 40px;
-`;
-
-export const SImage = styled.img`
-  height: 100%;
+  margin-bottom: 40px;
 `;
 
 export const SUtils = styled.div`
