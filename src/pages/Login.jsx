@@ -4,6 +4,12 @@ import { useState } from 'react';
 import { Line, Button } from '../components/common';
 import { localStorageKey } from '../constants/localStorageKey';
 import { getLocalStorage, setLocalStorage } from '../utils/localStorage';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import FormInput from '../components/common/sign/FormInput';
+import { Link, useNavigate } from 'react-router-dom';
+import { PATH } from '../constants/path';
 
 const SLayout = styled.main`
   max-width: 1200px;
@@ -24,12 +30,6 @@ const SForm = styled.form`
   margin: 0 auto;
 `;
 
-const SInput = styled.input`
-  font-size: 2rem;
-  padding: 10px 5px;
-  border: 1px solid #ced4da;
-`;
-
 const SLabel = styled.label`
   display: flex;
   align-items: center;
@@ -41,37 +41,59 @@ const SLabel = styled.label`
   }
 `;
 
+const loginSchema = z.object({
+  email: z.string().email('이메일 형식을 입력해주세요'),
+  password: z.string().regex(/^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{6,12}$/, '영문, 숫자 조합 6~12자 입력해주세요.'),
+});
+
 const Login = () => {
-  const [isCheck, setCheck] = useState(getLocalStorage(localStorageKey.SAVED_EMAIL_KEY) ? true : false);
+  const [isCheck, setCheck] = useState(getLocalStorage(localStorageKey.SAVED_EMAIL_KEY) !== '');
+  const { register, formState, handleSubmit, getFieldState } = useForm({
+    resolver: zodResolver(loginSchema),
+  });
+  const navigate = useNavigate();
 
-  const handleLoginSubmit = e => {
-    e.preventDefault();
+  const handleLoginSubmit = data => {
+    isCheck
+      ? setLocalStorage(localStorageKey.SAVED_EMAIL_KEY, data.email)
+      : setLocalStorage(localStorageKey.SAVED_EMAIL_KEY, '');
 
-    console.log(isCheck);
-
-    if (isCheck) setLocalStorage(localStorageKey.SAVED_EMAIL_KEY, e.target.email.value);
-    else setLocalStorage(localStorageKey.SAVED_EMAIL_KEY, '');
+    navigate(PATH.MY_LOCATION);
   };
 
   return (
     <SLayout>
       <STitle>로그인</STitle>
-      <SForm onSubmit={handleLoginSubmit}>
-        <SInput
+      <SForm noValidate onSubmit={handleSubmit(handleLoginSubmit)}>
+        <FormInput
           type="text"
           name="email"
           placeholder="이메일"
           defaultValue={getLocalStorage(localStorageKey.SAVED_EMAIL_KEY) ?? ''}
+          register={register}
+          formState={formState}
+          getFieldState={getFieldState}
         />
-        <SInput type="password" name="password" placeholder="비밀번호" />
+        <FormInput
+          type="password"
+          name="password"
+          placeholder="비밀번호"
+          register={register}
+          formState={formState}
+          getFieldState={getFieldState}
+        />
         <SLabel>
           <input type="checkbox" checked={isCheck} onChange={e => setCheck(e.target.checked)} />
           <CheckBoxSquareIcon size="2.3rem" color={isCheck ? '#228be6' : '#e9ecef'} />
           <span>이메일 기억하기</span>
         </SLabel>
-        <Button color="blue">로그인</Button>
+        <Button type="submit" color="blue">
+          로그인
+        </Button>
         <Line />
-        <Button isBorder>회원가입</Button>
+        <Button isBorder handleClick={() => navigate(PATH.JOIN)}>
+          회원가입
+        </Button>
       </SForm>
     </SLayout>
   );
