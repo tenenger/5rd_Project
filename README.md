@@ -2,6 +2,8 @@
 
 #### 배웠던 개발 지식 기반, 개발 역량 향상 : react-query, recoil
 
+**[기획 Notion](https://tenener.notion.site/f7e3126674684676ad2e980d742cec5c)**
+
 <br/>
 
 ## 2. Demo
