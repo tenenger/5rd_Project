@@ -11,9 +11,13 @@ const colorSchema = {
   },
 };
 
-const Button = ({ color = 'white', isBorder, children }) => {
+const Button = ({ type = 'button', color = 'white', isBorder, children }) => {
   return (
-    <SLayout isBorder={isBorder} color={colorSchema[color].color} backgroundColor={colorSchema[color].backgroundColor}>
+    <SLayout
+      type={type}
+      isBorder={isBorder}
+      color={colorSchema[color].color}
+      backgroundColor={colorSchema[color].backgroundColor}>
       {children}
     </SLayout>
   );
