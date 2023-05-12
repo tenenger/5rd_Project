@@ -1,19 +1,8 @@
 import { Link } from 'react-router-dom';
-import { SLogo, SLayout, SImage, SUtils, SSearchBar, SearchInput } from './NavigationBar.style';
+import { SLayout, SUtils, SSearchBar, SearchInput } from './NavigationBar.style';
 import { PATH } from '../../../constants/path';
 import { SearchIcon, UserIcon } from '../../common/icons';
-import { Menu } from '../../common';
-
-const Logo = () => {
-  return (
-    <Link to={PATH.MY_LOCATION}>
-      <SLogo>
-        <SImage src="/images/logo/main.png" alt="logo" />
-        <span>Meses</span>
-      </SLogo>
-    </Link>
-  );
-};
+import { Menu, Logo } from '../../common';
 
 const SearchBar = ({ icon }) => {
   return (
@@ -42,7 +31,9 @@ const Utils = () => {
 const NavigationBar = () => {
   return (
     <SLayout>
-      <Logo />
+      <Link to={PATH.MY_LOCATION}>
+        <Logo />
+      </Link>
       <SearchBar icon={<SearchIcon size="3rem" />} />
       <Utils />
     </SLayout>
