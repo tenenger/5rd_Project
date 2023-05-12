@@ -86,6 +86,7 @@ npm run dev
 
 ### 2차 추가 작업
 
+- 로그인 페이지 UI 추가 및 이메일 기억하기 기능 추가 : 2023.05-12
 - React-Query의 캐시 기능, Lazy API 통신을 활용하여 로딩 감소 : 2023.05.08
 - 위치 액세스 거부했을 떄 무한 로딩인 현상 수정 : 2023.05.08
 - redux -> recoil, fontawesome -> react-icons, CRA -> vite 라이브러리 변경 : 2023.05.08
