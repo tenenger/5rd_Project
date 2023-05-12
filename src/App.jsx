@@ -1,7 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import { Favorite, MyLocation, AllLocation } from './pages';
-import Root from './pages/Root';
+import { Root, Favorite, MyLocation, AllLocation, Login } from './pages';
 import { PATH } from './constants/path';
 
 const router = createBrowserRouter([
@@ -21,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: PATH.FAVORITES,
         element: <Favorite />,
+      },
+      {
+        path: PATH.LOGIN,
+        element: <Login />,
       },
     ],
   },
