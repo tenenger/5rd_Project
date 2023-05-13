@@ -66,7 +66,7 @@ const Join = () => {
     }
 
     // 회원가입 축하 페이지로 리다이렉트 예정
-    navigate(PATH.LOGIN);
+    navigate(PATH.JOIN_COMPLETE);
   };
 
   console.log(formState.errors);

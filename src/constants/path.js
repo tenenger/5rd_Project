@@ -4,4 +4,5 @@ export const PATH = {
   FAVORITES: '/favorites',
   LOGIN: '/login',
   JOIN: '/join',
+  JOIN_COMPLETE: '/joinComplete',
 };
