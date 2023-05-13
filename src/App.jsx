@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { Root, Favorite, MyLocation, AllLocation, Login, Join } from './pages';
-import { PATH } from './constants/path';
+import { PATH } from './constants';
 
 const router = createBrowserRouter([
   {

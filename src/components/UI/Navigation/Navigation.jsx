@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 
 import { SLayout, SLink } from './Navigation.style';
 import { MyLocationIcon, AllLocationIcon, FilledStarIcon } from '../../common/icons';
-import { PATH } from '../../../constants/path';
+import { PATH } from '../../../constants';
 
 const Navigation = () => {
   const { pathname } = useLocation();

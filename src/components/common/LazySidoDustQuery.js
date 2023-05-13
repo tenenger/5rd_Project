@@ -1,6 +1,5 @@
 import { useQueries } from '@tanstack/react-query';
-import { SIDO_NAMES } from '../../constants/dust';
-import { sidoQueryKey } from '../../constants/queryKey';
+import { SIDO_NAMES, sidoQueryKey } from '../../constants';
 import { getMySidoDust } from '../../api/fetch';
 
 const queryFn = sido => async () => {

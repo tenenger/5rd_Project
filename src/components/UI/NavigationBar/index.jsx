@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { SLayout, SUtils, SSearchBar, SearchInput } from './NavigationBar.style';
-import { PATH } from '../../../constants/path';
+import { PATH } from '../../../constants';
 import { SearchIcon, UserIcon } from '../../common/icons';
 import { Menu, Logo } from '../../common';
 

@@ -1,6 +1,6 @@
 import { Card } from '../../common';
 import { SCardLayout, SSelect } from './WeatherCard.style';
-import { SIDO_NAMES } from '../../../constants/dust';
+import { SIDO_NAMES } from '../../../constants';
 
 const WeatherCard = ({ data, isShow, dosi, handleSelectChange }) => {
   return (

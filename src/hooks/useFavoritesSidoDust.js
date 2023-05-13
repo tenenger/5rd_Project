@@ -1,5 +1,5 @@
 import { useQueries } from '@tanstack/react-query';
-import { sidoQueryKey } from '../constants/queryKey';
+import { sidoQueryKey } from '../constants';
 import { getMySidoDust } from '../api/fetch';
 import { useRecoilValue } from 'recoil';
 import { favoriteSidoState } from '../recoil/selectors/dust';

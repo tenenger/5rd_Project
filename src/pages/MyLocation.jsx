@@ -1,6 +1,6 @@
 import { LoadingModal } from '../components/common';
 import { WeatherCard } from '../components/UI';
-import { SIDO_NAMES } from '../constants/dust';
+import { SIDO_NAMES } from '../constants';
 import useAddress from '../hooks/useAddress';
 
 import useSidoDust from '../hooks/useSidoDust';

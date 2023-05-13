@@ -2,14 +2,13 @@ import styled from 'styled-components';
 import { CheckBoxSquareIcon } from '../components/common/icons';
 import { useState } from 'react';
 import { Line, Button } from '../components/common';
-import { localStorageKey } from '../constants/localStorageKey';
+import { PATH, localStorageKey } from '../constants';
 import { getLocalStorage, setLocalStorage } from '../utils/localStorage';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import FormInput from '../components/common/sign/FormInput';
 import { useNavigate } from 'react-router-dom';
-import { PATH } from '../constants/path';
 
 const SLayout = styled.main`
   max-width: 1200px;
