@@ -59,6 +59,7 @@ const FormInput = ({
   type,
   name,
   placeholder,
+  autoFocus,
   defaultValue = '',
   register,
   formState: { errors },
@@ -68,6 +69,8 @@ const FormInput = ({
   const { invalid, isTouched } = getFieldState(name);
 
   const handleChange = () => {
+    if (!trigger) return;
+
     if (name === 'password') trigger('confirmPassword');
   };
 
@@ -77,6 +80,7 @@ const FormInput = ({
         id={name}
         type={type}
         name={name}
+        autoFocus={autoFocus}
         required
         defaultValue={defaultValue}
         isError={errors[name]}
