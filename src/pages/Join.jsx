@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { Line, Button } from '../components/common';
-import FormInput from '../components/common/sign/FormInput';
+import { Line, Button, FormInput } from '../components/common';
 import { PATH, joinSchema } from '../constants';
 
 const SLayout = styled.main`

@@ -4,3 +4,4 @@ export { default as Menu } from './menu';
 export { default as Logo } from './logo';
 export { default as Line } from './line';
 export { default as Button } from './button';
+export { default as FormInput } from './sign/FormInput';
