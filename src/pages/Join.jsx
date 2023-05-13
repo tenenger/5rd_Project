@@ -26,7 +26,7 @@ const SForm = styled.form`
 `;
 
 const Join = () => {
-  const { register, formState, handleSubmit, getFieldState } = useForm({
+  const { register, formState, trigger, handleSubmit, getFieldState } = useForm({
     resolver: zodResolver(joinSchema),
   });
   const navigate = useNavigate();
@@ -56,6 +56,7 @@ const Join = () => {
           register={register}
           formState={formState}
           getFieldState={getFieldState}
+          trigger={trigger}
         />
         <FormInput
           type="password"

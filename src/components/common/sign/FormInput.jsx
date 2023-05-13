@@ -55,8 +55,21 @@ const SErrorMessage = styled.span`
   color: #f03e3e;
 `;
 
-const FormInput = ({ type, name, placeholder, defaultValue = '', register, formState: { errors }, getFieldState }) => {
-  const { invalid, isTouched, error } = getFieldState(name);
+const FormInput = ({
+  type,
+  name,
+  placeholder,
+  defaultValue = '',
+  register,
+  formState: { errors },
+  getFieldState,
+  trigger,
+}) => {
+  const { invalid, isTouched } = getFieldState(name);
+
+  const handleChange = () => {
+    if (name === 'password') trigger('confirmPassword');
+  };
 
   return (
     <SLayout>
@@ -69,7 +82,9 @@ const FormInput = ({ type, name, placeholder, defaultValue = '', register, formS
         isError={errors[name]}
         isValid={!invalid}
         isTouched={isTouched}
-        {...register(name)}
+        {...register(name, {
+          onChange: handleChange,
+        })}
       />
       <SErrorMessage>{errors[name] && errors[name].message}</SErrorMessage>
       <SLabel htmlFor={name}>{placeholder}</SLabel>
