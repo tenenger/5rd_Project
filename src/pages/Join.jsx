@@ -65,11 +65,8 @@ const Join = () => {
       return;
     }
 
-    // 회원가입 축하 페이지로 리다이렉트 예정
     navigate(PATH.JOIN_COMPLETE);
   };
-
-  console.log(formState.errors);
 
   return (
     <SLayout>
@@ -122,7 +119,7 @@ const Join = () => {
           {stage === 3 ? '회원가입' : '다음 단계'}
         </Button>
         <Line />
-        <Button color="blue" handleClick={() => navigate(PATH.LOGIN)}>
+        <Button color="white" bgColor="blue.6" handleClick={() => navigate(PATH.LOGIN)}>
           로그인 하러가기
         </Button>
       </SForm>

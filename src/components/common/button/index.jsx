@@ -1,24 +1,12 @@
 import { SLayout } from './Button.style';
 
-const colorSchema = {
-  white: {
-    color: '#212529',
-    backgroundColor: '#f8f9fa',
-  },
-  blue: {
-    color: '#fff',
-    backgroundColor: '#228be6',
-  },
-};
+const Button = ({ type = 'button', color, bgColor, disabled, isBorder, children, handleClick }) => {
+  const [fontColor, fontColorIdx = 0] = color?.split('.') ?? ['black', 0];
+  const [backgroundColor, backgroundColorIdx = 0] = bgColor?.split('.') ?? ['white', 0];
 
-const Button = ({ type = 'button', color = 'white', disabled, isBorder, children, handleClick }) => {
   return (
     <SLayout
-      type={type}
-      disabled={disabled ?? false}
-      isBorder={isBorder}
-      color={colorSchema[color].color}
-      backgroundColor={colorSchema[color].backgroundColor}
+      {...{ type, disabled, fontColor, fontColorIdx, backgroundColor, backgroundColorIdx, isBorder }}
       onClick={e => {
         handleClick && handleClick(e);
       }}>

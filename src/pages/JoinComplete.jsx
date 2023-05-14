@@ -30,7 +30,7 @@ const JoinComplete = () => {
   return (
     <SLayout>
       <STitle>회원가입이 완료되었습니다 😊</STitle>
-      <Button color="blue" handleClick={handleClick}>
+      <Button color="white" bgColor="blue.6" handleClick={handleClick}>
         로그인 하러 가기
       </Button>
     </SLayout>

@@ -87,7 +87,7 @@ const Login = () => {
           <CheckBoxSquareIcon size="2.3rem" color={isCheck ? '#228be6' : '#e9ecef'} />
           <span>이메일 기억하기</span>
         </SLabel>
-        <Button type="submit" color="blue">
+        <Button type="submit" color="white" bgColor="blue.6">
           로그인
         </Button>
         <Line />
