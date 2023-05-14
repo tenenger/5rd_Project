@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const SLayout = styled.header`
   margin-bottom: 40px;
-  border-bottom: 1px solid #ced4da;
+  border-bottom: 1px solid ${props => props.theme.gray[4]};
 `;
 
 export const SContainer = styled.div`
@@ -37,7 +37,7 @@ export const SearchInput = styled.input.attrs({
   type: 'text',
 })`
   width: 100%;
-  border: 1px solid #ced4da;
+  border: 1px solid ${props => props.theme.gray[4]};
   font-size: 2rem;
   outline: none;
   border-radius: 10px;

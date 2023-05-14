@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SLayout = styled.div`
-  background-color: #f8f9fa;
+  background-color: ${props => props.theme.gray[0]};
   position: absolute;
   width: 200px;
   top: 40px;
@@ -14,6 +14,6 @@ export const SItem = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: #dee2e6;
+    background-color: ${props => props.theme.gray[3]};
   }
 `;

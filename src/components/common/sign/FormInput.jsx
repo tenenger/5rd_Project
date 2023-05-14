@@ -13,21 +13,21 @@ const SLabel = styled.label`
   top: 0;
   left: 0;
   font-size: 2rem;
-  color: #adb5bd;
+  color: ${props => props.theme.gray[5]};
   transition: 0.3s ease;
   cursor: pointer;
-  background-color: #fff;
+  background-color: ${props => props.theme.white[0]};
 `;
 
 const SInput = styled.input`
   font-size: 1.8rem;
   padding: 16px 20px;
-  border: 1px solid #ced4da;
+  border: 1px solid ${props => props.theme.gray[4]};
 
   ${props =>
     props.isError &&
     `
-    border-bottom: 2.5px solid #f03e3e;
+    border-bottom: 2.5px solid ${props.theme.red[7]};
   `}
 
   :focus {
@@ -35,7 +35,7 @@ const SInput = styled.input`
       props.isValid &&
       props.isTouched &&
       `
-    border-bottom: 2.5px solid #228be6;
+    border-bottom: 2.5px solid ${props.theme.blue[6]};
   `}
   }
 
@@ -52,7 +52,7 @@ const SInput = styled.input`
 
 const SErrorMessage = styled.span`
   font-size: 1.6rem;
-  color: #f03e3e;
+  color: ${props => props.theme.red[7]};
 `;
 
 const FormInput = ({

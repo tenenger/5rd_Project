@@ -9,7 +9,7 @@ import { useState } from 'react';
 const Card = ({ item: { sidoName, stationName, dataTime, pm10Value, pm10Grade } }) => {
   const [favorites, setFavorites] = useRecoilState(favoriteGuRoState);
   const [isFavorite, setIsFavorite] = useState(favorites[sidoName]?.includes(stationName) ?? false);
-  const { message, color } = getDustMessageFromGrade(+pm10Grade);
+  const { bgColor, bgColorIdx, message } = getDustMessageFromGrade(+pm10Grade);
 
   const handleFavoriteClick = () => {
     setFavorites(
@@ -21,7 +21,7 @@ const Card = ({ item: { sidoName, stationName, dataTime, pm10Value, pm10Grade } 
   };
 
   return (
-    <SLayout meseColor={color}>
+    <SLayout {...{ bgColor, bgColorIdx }}>
       <SHeader>
         <span>{stationName}</span>
         <SSido>{sidoName}</SSido>

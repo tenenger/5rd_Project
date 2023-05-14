@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router-dom';
@@ -46,11 +46,13 @@ const loginSchema = z.object({
 });
 
 const Login = () => {
+  const theme = useTheme();
   const [isCheck, setCheck] = useState(getLocalStorage(localStorageKey.SAVED_EMAIL_KEY) !== '');
   const { register, formState, handleSubmit, getFieldState } = useForm({
     resolver: zodResolver(loginSchema),
   });
   const navigate = useNavigate();
+  console.log(theme);
 
   const handleLoginSubmit = data => {
     isCheck
@@ -84,7 +86,7 @@ const Login = () => {
         />
         <SLabel>
           <input type="checkbox" checked={isCheck} onChange={e => setCheck(e.target.checked)} />
-          <CheckBoxSquareIcon size="2.3rem" color={isCheck ? '#228be6' : '#e9ecef'} />
+          <CheckBoxSquareIcon size="2.3rem" color={isCheck ? theme.blue[6] : theme.gray[2]} />
           <span>이메일 기억하기</span>
         </SLabel>
         <Button type="submit" color="white" bgColor="blue.6">
