@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { SLayout, SUtils, SSearchBar, SearchInput } from './NavigationBar.style';
+import { SLayout, SContainer, SUtils, SSearchBar, SearchInput } from './NavigationBar.style';
 import { PATH } from '../../../constants';
 import { SearchIcon, UserIcon } from '../../common/icons';
 import { Menu, Logo } from '../../common';
@@ -31,11 +31,13 @@ const Utils = () => {
 const NavigationBar = () => {
   return (
     <SLayout>
-      <Link to={PATH.MY_LOCATION}>
-        <Logo />
-      </Link>
-      <SearchBar icon={<SearchIcon size="3rem" />} />
-      <Utils />
+      <SContainer>
+        <Link to={PATH.MY_LOCATION}>
+          <Logo />
+        </Link>
+        <SearchBar icon={<SearchIcon size="3rem" />} />
+        <Utils />
+      </SContainer>
     </SLayout>
   );
 };

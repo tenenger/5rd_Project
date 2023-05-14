@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 
 export const SLayout = styled.header`
+  margin-bottom: 40px;
+  border-bottom: 1px solid #ced4da;
+`;
+
+export const SContainer = styled.div`
+  max-width: 1200px;
+  height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  max-width: 1200px;
-  height: 80px;
-  margin-bottom: 40px;
 `;
 
 export const SUtils = styled.div`
