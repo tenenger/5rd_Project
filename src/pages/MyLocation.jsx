@@ -16,7 +16,7 @@ const MyLocation = () => {
         <LoadingModal />
       ) : (
         <>
-          <Carousel />
+          <Carousel autoplay />
           <WeatherCard isShow={false} data={sidoDust} />
         </>
       )}

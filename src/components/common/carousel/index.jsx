@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { SCarousel, SLayout, SArrowLeft, SArrowRight, SArrow, SContainer } from './Carousel.style';
 
 const data = [
@@ -7,16 +7,24 @@ const data = [
   { id: 3, url: 'https://dummyimage.com/1200x480/333/fff&text=3', alt: 3 },
 ];
 
-const Carousel = () => {
+const Carousel = ({ autoplay = false }) => {
   const carouselData = [data.at(-1), ...data, data.at(0)];
   const [isTransition, setIsTransition] = useState(false);
   const [slideIdx, setSlideIdx] = useState(1);
+  const intervalId = useRef(null);
 
-  const handleArrowClick = e => {
+  const handleArrowClick = type => {
     if (isTransition) return;
 
-    setSlideIdx(e.target.id === 'prev' ? slideIdx - 1 : slideIdx + 1);
+    setSlideIdx(prev => (type === 'prev' ? prev - 1 : prev + 1));
     setIsTransition(prev => !prev);
+
+    if (!autoplay) return;
+
+    clearInterval(intervalId.current);
+    intervalId.current = setInterval(() => {
+      handleArrowClick('next');
+    }, 5000);
   };
 
   const handleTransitionEnd = () => {
@@ -26,16 +34,45 @@ const Carousel = () => {
     if (slideIdx === carouselData.length - 1) setSlideIdx(1);
   };
 
+  const handleMouseEnter = () => {
+    if (!autoplay) return;
+
+    clearInterval(intervalId.current);
+  };
+
+  const handleMouseLeaver = () => {
+    if (!autoplay) return;
+
+    intervalId.current = setInterval(() => {
+      handleArrowClick('next');
+    }, 5000);
+  };
+
+  useEffect(() => {
+    if (!autoplay) return;
+
+    intervalId.current = setInterval(() => {
+      handleArrowClick('next');
+    }, 5000);
+
+    return () => clearInterval(intervalId.current);
+  }, []);
+
   return (
     <SLayout>
       <SContainer>
-        <SCarousel idx={slideIdx} transition={isTransition ? 500 : 0} onTransitionEnd={handleTransitionEnd}>
+        <SCarousel
+          idx={slideIdx}
+          transition={isTransition ? 500 : 0}
+          onTransitionEnd={handleTransitionEnd}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeaver}>
           {carouselData.map(({ url, id, alt }, idx) => (
             <img key={id + idx} src={url} alt={alt}></img>
           ))}
         </SCarousel>
-        <SArrow id="prev" size="8rem" as={SArrowLeft} onClick={handleArrowClick} />
-        <SArrow id="next" size="8rem" as={SArrowRight} onClick={handleArrowClick} />
+        <SArrow size="8rem" as={SArrowLeft} onClick={() => handleArrowClick('prev')} />
+        <SArrow size="8rem" as={SArrowRight} onClick={() => handleArrowClick('next')} />
       </SContainer>
     </SLayout>
   );
