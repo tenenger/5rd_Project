@@ -6,6 +6,7 @@ export const SLayout = styled.div`
   width: 200px;
   top: 40px;
   right: 0;
+  z-index: 1;
 `;
 
 export const SItem = styled.div`
