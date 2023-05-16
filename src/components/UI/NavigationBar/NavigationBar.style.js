@@ -29,7 +29,7 @@ export const SSearchBar = styled.div`
   svg {
     position: absolute;
     left: 10px;
-    top: calc(50% - ${props => parseInt(props.size) / 2}rem);
+    top: calc(50% - ${props => parseInt(props.size, 10) / 2}rem);
   }
 `;
 

@@ -1,5 +1,6 @@
 import { selector } from 'recoil';
-import { favoriteGuRoState } from '../atoms/dust';
+
+import { favoriteGuRoState } from 'recoil/atoms/dust';
 
 export const favoriteSidoState = selector({
   key: 'favoriteSidoState',

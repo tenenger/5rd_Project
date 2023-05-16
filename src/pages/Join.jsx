@@ -1,12 +1,13 @@
-import styled from 'styled-components';
+import { useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-
-import { Line, Button, FormInput } from '../components/common';
-import { PATH } from '../constants';
-import { useState } from 'react';
 import { z } from 'zod';
+import styled from 'styled-components';
+
+import { Line, Button, FormInput } from 'components/common';
+import { PATH } from 'constants';
 
 const SLayout = styled.main`
   max-width: 1200px;
@@ -30,7 +31,7 @@ const SForm = styled.form`
 const Join = () => {
   const [stage, setStage] = useState(1);
 
-  const { register, formState, trigger, handleSubmit, getFieldState, reset } = useForm({
+  const { register, formState, trigger, handleSubmit, getFieldState } = useForm({
     resolver: zodResolver(
       z
         .object({
@@ -58,9 +59,9 @@ const Join = () => {
 
   const handleJoinSubmit = data => {
     // 회원가입 data api 요청 기능 추가 예정: POST;
+    console.log(data);
 
     if (stage !== 3) {
-      // reset();
       setStage(stage + 1);
       return;
     }
@@ -73,53 +74,50 @@ const Join = () => {
       <STitle>회원가입</STitle>
       <SForm noValidate onSubmit={handleSubmit(handleJoinSubmit)}>
         <FormInput
-          type="text"
-          name="email"
-          placeholder="아이디(이메일)"
-          autoFocus
-          register={register}
           formState={formState}
           getFieldState={getFieldState}
+          name="email"
+          placeholder="아이디(이메일)"
+          register={register}
+          type="text"
         />
         {stage >= 2 && (
           <>
             <FormInput
-              type="password"
-              name="password"
-              placeholder="비밀번호"
-              autoFocus
-              register={register}
               formState={formState}
               getFieldState={getFieldState}
+              name="password"
+              placeholder="비밀번호"
+              register={register}
               trigger={trigger}
+              type="password"
             />
             <FormInput
-              type="password"
+              formState={formState}
+              getFieldState={getFieldState}
               name="confirmPassword"
               placeholder="비밀번호 확인"
               register={register}
-              formState={formState}
-              getFieldState={getFieldState}
               trigger={trigger}
+              type="password"
             />
           </>
         )}
         {stage >= 3 && (
           <FormInput
-            type="text"
-            name="nickname"
-            placeholder="별명"
-            autoFocus
-            register={register}
             formState={formState}
             getFieldState={getFieldState}
+            name="nickname"
+            placeholder="별명"
+            register={register}
+            type="text"
           />
         )}
         <Button type="submit" isBorder>
           {stage === 3 ? '회원가입' : '다음 단계'}
         </Button>
         <Line />
-        <Button color="white" bgColor="blue.6" handleClick={() => navigate(PATH.LOGIN)}>
+        <Button bgColor="blue.6" color="white" handleClick={() => navigate(PATH.LOGIN)}>
           로그인 하러가기
         </Button>
       </SForm>

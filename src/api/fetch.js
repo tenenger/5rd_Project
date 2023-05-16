@@ -1,6 +1,8 @@
+/* eslint-disable no-promise-executor-return */
 import axios from 'axios';
-import { tryCatch } from '../utils/api';
-import { DUST_OPTIONS } from '../constants';
+
+import { tryCatch } from 'utils/api';
+import { DUST_OPTIONS } from 'constants';
 
 export const getGeolocation = tryCatch(async () => {
   const { coords } = await new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject));

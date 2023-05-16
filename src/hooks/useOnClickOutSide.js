@@ -15,7 +15,7 @@ const useOnClickOutSide = handler => {
     return () => {
       document.removeEventListener('click', listener);
     };
-  }, [ref]);
+  }, [handler, ref]);
 
   return ref;
 };

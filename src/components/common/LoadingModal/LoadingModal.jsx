@@ -1,18 +1,15 @@
-import React from "react";
-import { SLoadingModalBox } from "./LoadingModal.style";
+import { SLoadingModalBox } from './LoadingModal.style';
 
-const LoadingModal = () => {
-  return (
-    <SLoadingModalBox>
-      <div className="spinner">
-        <div className="part">
+const LoadingModal = () => (
+  <SLoadingModalBox>
+    <div className="spinner">
+      <div className="part">
+        <div></div>
+        <div>
           <div></div>
-          <div>
-            <div></div>
-          </div>
         </div>
       </div>
-    </SLoadingModalBox>
-  );
-};
+    </div>
+  </SLoadingModalBox>
+);
 export default LoadingModal;

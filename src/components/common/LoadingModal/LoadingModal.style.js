@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SLoadingModalBox = styled.div`
   position: absolute;
@@ -56,7 +56,7 @@ export const SLoadingModalBox = styled.div`
             transform: rotate(45deg);
             &:before,
             &:after {
-              content: "";
+              content: '';
               display: block;
               position: absolute;
               width: 12px;

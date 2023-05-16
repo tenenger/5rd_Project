@@ -1,8 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Button } from '../components/common';
-import { useNavigate } from 'react-router-dom';
-import { PATH } from '../constants';
+import { Button } from 'components/common';
+import { PATH } from 'constants';
 
 const SLayout = styled.main`
   display: flex;
@@ -30,7 +30,7 @@ const JoinComplete = () => {
   return (
     <SLayout>
       <STitle>회원가입이 완료되었습니다 😊</STitle>
-      <Button color="white" bgColor="blue.6" handleClick={handleClick}>
+      <Button bgColor="blue.6" color="white" handleClick={handleClick}>
         로그인 하러 가기
       </Button>
     </SLayout>

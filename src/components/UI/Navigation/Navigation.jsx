@@ -1,23 +1,24 @@
 import { useLocation } from 'react-router-dom';
 
+import { MyLocationIcon, AllLocationIcon, FilledStarIcon } from 'components/common/icons';
+import { PATH } from 'constants';
+
 import { SLayout, SLink } from './Navigation.style';
-import { MyLocationIcon, AllLocationIcon, FilledStarIcon } from '../../common/icons';
-import { PATH } from '../../../constants';
 
 const Navigation = () => {
   const { pathname } = useLocation();
 
   return (
     <SLayout>
-      <SLink to={PATH.MY_LOCATION} $active={PATH.MY_LOCATION === pathname}>
+      <SLink $active={PATH.MY_LOCATION === pathname} to={PATH.MY_LOCATION}>
         <MyLocationIcon />
         <h3>내 지역보기</h3>
       </SLink>
-      <SLink to={PATH.ALL_LOCATION} $active={PATH.ALL_LOCATION === pathname}>
+      <SLink $active={PATH.ALL_LOCATION === pathname} to={PATH.ALL_LOCATION}>
         <AllLocationIcon />
         <h3>전체 지역보기</h3>
       </SLink>
-      <SLink to={PATH.FAVORITES} $active={PATH.FAVORITES === pathname}>
+      <SLink $active={PATH.FAVORITES === pathname} to={PATH.FAVORITES}>
         <FilledStarIcon />
         <h3>즐겨찾기</h3>
       </SLink>

@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { addressQueryKey, geolocationQueryKey } from '../constants';
-import { getGeolocation, getKakaoAddresses } from '../api/fetch';
+
+import { getGeolocation, getKakaoAddresses } from 'api/fetch';
+import { addressQueryKey, geolocationQueryKey } from 'constants';
 
 const useAddress = () => {
   const { data: geolocation } = useQuery({

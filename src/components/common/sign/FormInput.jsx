@@ -59,7 +59,6 @@ const FormInput = ({
   type,
   name,
   placeholder,
-  autoFocus,
   defaultValue = '',
   register,
   formState: { errors },
@@ -77,15 +76,14 @@ const FormInput = ({
   return (
     <SLayout>
       <SInput
-        id={name}
-        type={type}
-        name={name}
-        autoFocus={autoFocus}
-        required
         defaultValue={defaultValue}
+        id={name}
         isError={errors[name]}
-        isValid={!invalid}
         isTouched={isTouched}
+        isValid={!invalid}
+        name={name}
+        type={type}
+        required
         {...register(name, {
           onChange: handleChange,
         })}

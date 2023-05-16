@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { ArrowLeft, ArrowRight } from '../icons';
 
 export const SLayout = styled.div`
@@ -29,7 +30,7 @@ export const SCarousel = styled.div`
 
 export const SArrow = styled.svg`
   position: absolute;
-  top: calc(50% - ${props => parseInt(props.size) / 2}rem);
+  top: calc(50% - ${props => parseInt(props.size, 10) / 2}rem);
   cursor: pointer;
 
   color: ${props => props.theme.gray[5]};

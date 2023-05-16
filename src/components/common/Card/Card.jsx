@@ -1,10 +1,12 @@
+import { useState } from 'react';
+
 import { useRecoilState } from 'recoil';
 
+import { EmptyStarIcon, FilledStarIcon } from 'components/common/icons';
+import { getDustMessageFromGrade } from 'utils/dust';
+import { favoriteGuRoState } from 'recoil/atoms/dust';
+
 import { SLayout, SSido, SDataTime, SMese, SMessage, SHeader, SIconButton } from './Card.style';
-import { getDustMessageFromGrade } from '../../../utils/dust';
-import { EmptyStarIcon, FilledStarIcon } from '../icons';
-import { favoriteGuRoState } from '../../../recoil/atoms/dust';
-import { useState } from 'react';
 
 const Card = ({ item: { sidoName, stationName, dataTime, pm10Value, pm10Grade } }) => {
   const [favorites, setFavorites] = useRecoilState(favoriteGuRoState);

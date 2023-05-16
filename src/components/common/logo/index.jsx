@@ -1,12 +1,10 @@
 import { SImage, SLogo } from './Logo.style';
 
-const Logo = () => {
-  return (
-    <SLogo>
-      <SImage src="/images/logo/main.png" alt="logo" />
-      <span>Meses</span>
-    </SLogo>
-  );
-};
+const Logo = () => (
+  <SLogo>
+    <SImage alt="logo" src="/images/logo/main.png" />
+    <span>Meses</span>
+  </SLogo>
+);
 
 export default Logo;

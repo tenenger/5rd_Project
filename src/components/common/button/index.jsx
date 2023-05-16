@@ -8,7 +8,7 @@ const Button = ({ type = 'button', color, bgColor, disabled, isBorder, children,
     <SLayout
       {...{ type, disabled, fontColor, fontColorIdx, backgroundColor, backgroundColorIdx, isBorder }}
       onClick={e => {
-        handleClick && handleClick(e);
+        if (handleClick) handleClick(e);
       }}>
       {children}
     </SLayout>

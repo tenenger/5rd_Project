@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { SItem, SLayout } from './Menu.style';
-import useOnClickOutSide from '../../../hooks/useOnClickOutSide';
 
-const Item = ({ children }) => {
-  return <SItem>{children}</SItem>;
-};
+import useOnClickOutSide from 'hooks/useOnClickOutSide';
+
+import { SItem, SLayout } from './Menu.style';
+
+const Item = ({ children }) => <SItem>{children}</SItem>;
 
 const Menu = ({ icon, children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +15,7 @@ const Menu = ({ icon, children }) => {
 
   return (
     <div>
-      <button onClick={() => setIsOpen(!isOpen)} ref={ref}>
+      <button ref={ref} onClick={() => setIsOpen(!isOpen)}>
         {icon}
       </button>
       {isOpen && <SLayout>{children}</SLayout>}

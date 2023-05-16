@@ -1,7 +1,5 @@
 import { SLayout } from './Line.style';
 
-const Line = () => {
-  return <SLayout />;
-};
+const Line = () => <SLayout />;
 
 export default Line;

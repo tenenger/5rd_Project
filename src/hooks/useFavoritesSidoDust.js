@@ -1,8 +1,9 @@
 import { useQueries } from '@tanstack/react-query';
-import { sidoQueryKey } from '../constants';
-import { getMySidoDust } from '../api/fetch';
 import { useRecoilValue } from 'recoil';
-import { favoriteSidoState } from '../recoil/selectors/dust';
+
+import { getMySidoDust } from 'api/fetch';
+import { sidoQueryKey } from 'constants';
+import { favoriteSidoState } from 'recoil/selectors/dust';
 
 const queryFn = sido => async () => {
   const data = await getMySidoDust(sido);

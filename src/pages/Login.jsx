@@ -1,14 +1,15 @@
 import { useState } from 'react';
-import styled, { useTheme } from 'styled-components';
+
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useNavigate } from 'react-router-dom';
-
-import { CheckBoxSquareIcon } from '../components/common/icons';
-import { Line, Button, FormInput } from '../components/common';
-import { PATH, localStorageKey } from '../constants';
-import { getLocalStorage, setLocalStorage } from '../utils/localStorage';
 import { z } from 'zod';
+import styled, { useTheme } from 'styled-components';
+
+import { Line, Button, FormInput } from 'components/common';
+import { CheckBoxSquareIcon } from 'components/common/icons';
+import { getLocalStorage, setLocalStorage } from 'utils/localStorage';
+import { PATH, localStorageKey } from 'constants';
 
 const SLayout = styled.main`
   max-width: 1200px;
@@ -52,12 +53,10 @@ const Login = () => {
     resolver: zodResolver(loginSchema),
   });
   const navigate = useNavigate();
-  console.log(theme);
 
   const handleLoginSubmit = data => {
-    isCheck
-      ? setLocalStorage(localStorageKey.SAVED_EMAIL_KEY, data.email)
-      : setLocalStorage(localStorageKey.SAVED_EMAIL_KEY, '');
+    if (isCheck) setLocalStorage(localStorageKey.SAVED_EMAIL_KEY, data.email);
+    else setLocalStorage(localStorageKey.SAVED_EMAIL_KEY, '');
 
     navigate(PATH.MY_LOCATION);
   };
@@ -67,33 +66,32 @@ const Login = () => {
       <STitle>로그인</STitle>
       <SForm noValidate onSubmit={handleSubmit(handleLoginSubmit)}>
         <FormInput
-          type="text"
-          name="email"
-          placeholder="이메일"
-          autoFocus
           defaultValue={getLocalStorage(localStorageKey.SAVED_EMAIL_KEY) ?? ''}
-          register={register}
           formState={formState}
           getFieldState={getFieldState}
+          name="email"
+          placeholder="이메일"
+          register={register}
+          type="text"
         />
         <FormInput
-          type="password"
+          formState={formState}
+          getFieldState={getFieldState}
           name="password"
           placeholder="비밀번호"
           register={register}
-          formState={formState}
-          getFieldState={getFieldState}
+          type="password"
         />
         <SLabel>
-          <input type="checkbox" checked={isCheck} onChange={e => setCheck(e.target.checked)} />
-          <CheckBoxSquareIcon size="2.3rem" color={isCheck ? theme.blue[6] : theme.gray[2]} />
+          <input checked={isCheck} type="checkbox" onChange={e => setCheck(e.target.checked)} />
+          <CheckBoxSquareIcon color={isCheck ? theme.blue[6] : theme.gray[2]} size="2.3rem" />
           <span>이메일 기억하기</span>
         </SLabel>
-        <Button type="submit" color="white" bgColor="blue.6">
+        <Button bgColor="blue.6" color="white" type="submit">
           로그인
         </Button>
         <Line />
-        <Button isBorder handleClick={() => navigate(PATH.JOIN)}>
+        <Button handleClick={() => navigate(PATH.JOIN)} isBorder>
           회원가입
         </Button>
       </SForm>
