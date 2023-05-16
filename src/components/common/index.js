@@ -5,4 +5,5 @@ export { default as Logo } from './logo';
 export { default as Line } from './line';
 export { default as Button } from './button';
 export { default as Carousel } from './carousel';
+export { default as DropDown } from './dropdown';
 export { default as FormInput } from './sign/FormInput';

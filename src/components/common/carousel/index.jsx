@@ -8,7 +8,7 @@ const data = [
   { id: 3, url: 'https://dummyimage.com/1200x480/333/fff&text=3', alt: 3 },
 ];
 
-const DELAY = 1000;
+const DELAY = 5000;
 
 const Carousel = ({ autoplay = false }) => {
   const carouselData = [data.at(-1), ...data, data.at(0)];

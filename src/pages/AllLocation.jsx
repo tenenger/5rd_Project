@@ -6,7 +6,7 @@ import useSidoDust from 'hooks/useSidoDust';
 
 const AllLocation = () => {
   const [sido, setSido] = useState('서울');
-  const { sidoDust, isLoading } = useSidoDust(sido);
+  const { sidoDust, isLoading } = useSidoDust({ sido });
 
   const handleSelectChange = e => {
     setSido(e.target.value);
