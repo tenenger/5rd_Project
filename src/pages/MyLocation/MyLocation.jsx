@@ -13,7 +13,7 @@ import { SLayout } from './MyLocation.style';
 const MyLocation = () => {
   const { address } = useAddress();
   const [tags, setTags] = useState([
-    SIDO_NAMES.find(({ title }) => address?.[0].region_1depth_name.includes(title)) ?? '서울',
+    SIDO_NAMES.find(({ title }) => address?.[0].region_1depth_name.includes(title))?.title ?? '서울',
   ]);
   const [sorted, setSorted] = useState({ subject: '', order: '' });
   const { data, isLoading } = useFilterSidoDust(tags);
@@ -21,9 +21,9 @@ const MyLocation = () => {
   const handleRemoveTagClick = sido => setTags(tags.filter(tag => tag !== sido));
 
   const handleFilterItemClick = sido => {
-    if (tags.some(tag => tag === sido)) return;
+    if (tags.some(tag => tag === sido.title)) return;
 
-    setTags([...tags, sido]);
+    setTags([...tags, sido.title]);
   };
 
   const handleSortItemClick = ({ subject, order }) =>

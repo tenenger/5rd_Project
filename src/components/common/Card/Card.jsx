@@ -30,10 +30,12 @@ const Card = ({ item: { sidoName, stationName, dataTime, pm10Value, pm10Grade1h 
         <SIconButton onClick={handleFavoriteClick}>{isFavorite ? <FilledStarIcon /> : <EmptyStarIcon />}</SIconButton>
       </SHeader>
       <SMessage>{message}</SMessage>
-      <div>
-        <SMese>미세먼지 수치 {pm10Value}</SMese>
-        <SDataTime>({dataTime} 기준)</SDataTime>
-      </div>
+      {pm10Grade1h && (
+        <div>
+          <SMese>미세먼지 수치 {pm10Value}</SMese>
+          <SDataTime>({dataTime} 기준)</SDataTime>
+        </div>
+      )}
     </SLayout>
   );
 };

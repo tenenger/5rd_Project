@@ -21,12 +21,19 @@ export const SDropDownSelect = styled.div`
 
 export const SDropDownList = styled.ul`
   width: ${props => props.width}px;
+  max-height: 400px;
   display: ${props => (props.isShow ? 'block' : 'none')};
   position: absolute;
 
   font-size: 1.6rem;
   background-color: ${props => props.theme.white[0]};
+
+  overflow-y: scroll;
   cursor: pointer;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 
   li {
     button {

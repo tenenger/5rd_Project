@@ -26,9 +26,9 @@ const DropDown = ({ data, title, handleItemClick, children, width = 200 }) => {
         )}
       </SDropDownSelect>
       <SDropDownList isShow={isShow} width={width}>
-        {data.map(({ title }) => (
-          <li key={title}>
-            <button onClick={() => handleItemClick(title)}>{title}</button>
+        {data.map(item => (
+          <li key={item.title}>
+            <button onClick={() => handleItemClick(item)}>{item.title}</button>
           </li>
         ))}
       </SDropDownList>

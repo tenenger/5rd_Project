@@ -9,7 +9,7 @@ export const getDustMessageFromGrade = pm10Grade1h => {
     case 4:
       return { bgColor: 'pink', bgColorIdx: 7, message: '매우 나쁨' };
     default:
-      return { bgColor: 'gray', bgColorIdx: 8, message: '알수 없음' };
+      return { bgColor: 'gray', bgColorIdx: 8, message: '측정소 고장' };
   }
 };
 
@@ -20,7 +20,7 @@ export const sortSidoDust = (sorted, sidoDust) => {
     case 'dictionary':
       return sidoDust.sort((a, b) => (a.stationName > b.stationName ? 1 * delta : -1 * delta));
     case 'dust':
-      return sidoDust.sort((a, b) => (a.pm10Value - b.pm10Value) * delta);
+      return sidoDust.sort((a, b) => ((a.pm10Value || 0) - (b.pm10Value || 0)) * delta);
     default:
       return sidoDust;
   }
