@@ -3,16 +3,15 @@ import { useQueries } from '@tanstack/react-query';
 import { getMySidoDust } from 'api/fetch';
 import { sidoQueryKey } from 'constants';
 
-const useFilterSidoDust = (sidoList, ...options) => {
+const useFilterSidoDust = sidoList => {
   const results = useQueries({
-    queries: sidoList.map(({ title }) => ({
-      queryKey: [...sidoQueryKey, title],
+    queries: sidoList.map(sido => ({
+      queryKey: [...sidoQueryKey, sido],
       queryFn: async () => {
-        const data = await getMySidoDust(title);
+        const data = await getMySidoDust(sido);
         return data;
       },
-      staleTime: 300000,
-      ...options,
+      staleTime: 60000,
     })),
   });
 

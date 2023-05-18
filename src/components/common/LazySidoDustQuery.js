@@ -10,9 +10,9 @@ const queryFn = sido => async () => {
 
 const LazySidoDustQuery = () => {
   useQueries({
-    queries: SIDO_NAMES.map(sido => ({
-      queryKey: [...sidoQueryKey, sido],
-      queryFn: queryFn(sido),
+    queries: SIDO_NAMES.map(({ title }) => ({
+      queryKey: [...sidoQueryKey, title],
+      queryFn: queryFn(title),
       staleTime: 300000,
     })),
   });

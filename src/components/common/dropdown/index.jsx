@@ -5,7 +5,7 @@ import useOnClickOutSide from 'hooks/useOnClickOutSide';
 
 import { SLayout, SDropDownSelect, SDropDownList } from './DropDown.style';
 
-const DropDown = ({ data, title, handleItemClick, children }) => {
+const DropDown = ({ data, title, handleItemClick, children, width = 200 }) => {
   const [isShow, setIsShow] = useState(false);
   const ref = useOnClickOutSide(() => setIsShow(false));
 
@@ -17,7 +17,7 @@ const DropDown = ({ data, title, handleItemClick, children }) => {
 
   return (
     <SLayout>
-      <SDropDownSelect ref={ref} onClick={handleDropDownClick}>
+      <SDropDownSelect ref={ref} width={width} onClick={handleDropDownClick}>
         {children || (
           <>
             <em>{title}</em>
@@ -25,10 +25,10 @@ const DropDown = ({ data, title, handleItemClick, children }) => {
           </>
         )}
       </SDropDownSelect>
-      <SDropDownList isShow={isShow}>
-        {data.map(item => (
-          <li key={item.id}>
-            <button onClick={() => handleItemClick(item)}>{item.title}</button>
+      <SDropDownList isShow={isShow} width={width}>
+        {data.map(({ title }) => (
+          <li key={title}>
+            <button onClick={() => handleItemClick(title)}>{title}</button>
           </li>
         ))}
       </SDropDownList>

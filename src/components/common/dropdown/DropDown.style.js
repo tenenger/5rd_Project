@@ -5,7 +5,7 @@ export const SLayout = styled.div`
 `;
 
 export const SDropDownSelect = styled.div`
-  width: 200px;
+  width: ${props => props.width}px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,6 +20,7 @@ export const SDropDownSelect = styled.div`
 `;
 
 export const SDropDownList = styled.ul`
+  width: ${props => props.width}px;
   display: ${props => (props.isShow ? 'block' : 'none')};
   position: absolute;
 
@@ -30,7 +31,7 @@ export const SDropDownList = styled.ul`
   li {
     button {
       text-align: left;
-      width: 200px;
+      width: 100%;
       padding: 10px 20px;
       height: 100%;
     }

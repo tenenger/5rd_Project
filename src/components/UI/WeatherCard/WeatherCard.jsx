@@ -7,8 +7,8 @@ const WeatherCard = ({ data, isShow, dosi, handleSelectChange }) => (
   <>
     {isShow && (
       <SSelect defaultValue={dosi} onChange={handleSelectChange}>
-        {SIDO_NAMES.map(item => (
-          <option key={item}>{item}</option>
+        {SIDO_NAMES.map(({ title }) => (
+          <option key={title}>{title}</option>
         ))}
       </SSelect>
     )}

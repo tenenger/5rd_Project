@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SLayout = styled.ul`
-  width: 400px;
+  min-width: 200px;
   min-height: 28px;
   display: flex;
   flex-wrap: wrap;
