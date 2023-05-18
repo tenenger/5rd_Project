@@ -2,10 +2,11 @@ import { useState } from 'react';
 
 import styled from 'styled-components';
 
-import { Carousel, DropDown, LoadingModal } from 'components/common';
+import { Tag, Carousel, DropDown, LoadingModal } from 'components/common';
 import { WeatherCard } from 'components/UI';
 import useAddress from 'hooks/useAddress';
-import useSidoDust from 'hooks/useSidoDust';
+import useFilterSidoDust from 'hooks/useFilterSidoDust';
+import { sortSidoDust } from 'utils/dust';
 import { SIDO_NAMES } from 'constants';
 
 const SLayout = styled.main`
@@ -19,48 +20,57 @@ const SContainer = styled.div`
 `;
 
 const SORT_DATA = [
-  { subject: 'dust', order: 'desc', content: '미세먼지 높은 순' },
-  { subject: 'dust', order: 'asc', content: '미세먼지 낮은 순' },
+  { id: 1, subject: 'dictionary', order: 'asc', title: '사전 오름차순' },
+  { id: 2, subject: 'dictionary', order: 'desc', title: '사전 내림차순' },
+  { id: 3, subject: 'dust', order: 'asc', title: '미세먼지 낮은 순' },
+  { id: 4, subject: 'dust', order: 'desc', title: '미세먼지 높은 순' },
 ];
 
-const SortSelection = ({ handleItemClick }) => {
-  const [content, setContent] = useState('정렬');
+const FILTER_DATA = [
+  { id: 1, title: '서울' },
+  { id: 2, title: '부산' },
+  { id: 3, title: '대구' },
+  { id: 4, title: '광주' },
+];
 
-  const handleSortClick = ({ subject, order, content }) => {
-    setContent(content);
-    handleItemClick({ subject, order, content });
+const FilterSido = ({ tags, handleItemClick, handleRemoveTagClick }) => (
+  <DropDown data={FILTER_DATA} handleItemClick={handleItemClick}>
+    <Tag data={tags} handleCloseBtnClick={handleRemoveTagClick} />
+  </DropDown>
+);
+const SortSelection = ({ handleItemClick }) => {
+  const [title, setTitle] = useState('정렬');
+
+  const handleSortClick = item => {
+    setTitle(item.title);
+    handleItemClick(item);
   };
 
-  return <DropDown content={content} data={SORT_DATA} handleItemClick={handleSortClick} />;
+  return <DropDown data={SORT_DATA} handleItemClick={handleSortClick} title={title} />;
 };
 
 const MyLocation = () => {
   const { address } = useAddress();
-  const SIDO_NAME = SIDO_NAMES.find(SIDO_NAME => address?.[0].region_1depth_name.includes(SIDO_NAME)) ?? '서울';
+  const [tags, setTags] = useState([
+    { title: SIDO_NAMES.find(SIDO_NAME => address?.[0].region_1depth_name.includes(SIDO_NAME)) ?? '서울', id: 1 },
+  ]);
   const [sorted, setSorted] = useState({ subject: '', order: '' });
-  const { sidoDust, isLoading } = useSidoDust({
-    sido: SIDO_NAME,
-    select:
-      sorted.subject === ''
-        ? sidoDust => sidoDust
-        : sidoDust =>
-            sidoDust.sort(({ pm10Value: aPm10Value }, { pm10Value: bPm10Value }) => {
-              if (sorted.subject === 'dust') {
-                return sorted.order === 'asc' ? aPm10Value - bPm10Value : bPm10Value - aPm10Value;
-              }
+  const { data, isLoading } = useFilterSidoDust(tags, { select: sidoDust => sortSidoDust(sorted, sidoDust) });
 
-              // 임시
-              return aPm10Value - bPm10Value;
-            }),
-  });
+  const handleRemoveTagClick = id => setTags(tags.filter(tag => tag.id !== id));
 
-  const handleItemClick = ({ subject, order }) => {
+  const handleFilterItemClick = ({ id, title }) => {
+    if (tags.some(tag => tag.id === id)) return;
+
+    setTags([...tags, { id, title }]);
+  };
+
+  const handleSortItemClick = ({ subject, order }) =>
     setSorted(prev => ({
       ...prev,
       subject,
       order,
     }));
-  };
 
   return (
     <>
@@ -70,10 +80,14 @@ const MyLocation = () => {
         <SLayout>
           <Carousel autoplay />
           <SContainer>
-            {/* <span>필터 기능 추가 예정</span> */}
-            <SortSelection handleItemClick={handleItemClick} />
+            <FilterSido
+              handleItemClick={handleFilterItemClick}
+              handleRemoveTagClick={handleRemoveTagClick}
+              tags={tags}
+            />
+            <SortSelection handleItemClick={handleSortItemClick} />
           </SContainer>
-          <WeatherCard data={sidoDust} isShow={false} />
+          <WeatherCard data={data} isShow={false} />
         </SLayout>
       )}
     </>

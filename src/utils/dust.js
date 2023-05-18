@@ -12,3 +12,16 @@ export const getDustMessageFromGrade = pm10Grade1h => {
       return { bgColor: 'gray', bgColorIdx: 8, message: '알수 없음' };
   }
 };
+
+export const sortSidoDust = (sorted, sidoDust) => {
+  const delta = sorted.order === 'asc' ? 1 : -1;
+
+  switch (sorted.subject) {
+    case 'dictionary':
+      return sidoDust.sort((a, b) => (a.stationName > b.stationName ? 1 * delta : -1 * delta));
+    case 'dust':
+      return sidoDust.sort((a, b) => (a.pm10Value - b.pm10Value) * delta);
+    default:
+      return sidoDust;
+  }
+};
