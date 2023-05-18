@@ -22,6 +22,7 @@ export const DUST_OPTIONS = {
   serviceKey: import.meta.env.VITE_APP_API_KEY,
   returnType: 'json',
   numOfRows: 100,
+  dataTerm: 'DAILY',
   pageNo: 1,
-  ver: 1.0,
+  ver: 1.3,
 };

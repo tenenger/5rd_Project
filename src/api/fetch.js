@@ -18,9 +18,9 @@ export const getKakaoAddresses = tryCatch(async ({ longitude, latitude }) => {
 });
 
 export const getMySidoDust = tryCatch(async sido => {
-  const { serviceKey, returnType, numOfRows, pageNo, ver } = DUST_OPTIONS;
+  const { serviceKey, returnType, numOfRows, dataTerm, pageNo, ver } = DUST_OPTIONS;
   const { data } = await axios.get(
-    `https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?serviceKey=${serviceKey}&returnType=${returnType}&numOfRows=${numOfRows}&pageNo=${pageNo}&sidoName=${sido}&ver=${ver}`
+    `https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?serviceKey=${serviceKey}&returnType=${returnType}&numOfRows=${numOfRows}&pageNo=${pageNo}&sidoName=${sido}&dataTerm=${dataTerm}&ver=${ver}`
   );
 
   return data.response.body.items;

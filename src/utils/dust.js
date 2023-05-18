@@ -1,5 +1,5 @@
-export const getDustMessageFromGrade = pm10Grade => {
-  switch (pm10Grade) {
+export const getDustMessageFromGrade = pm10Grade1h => {
+  switch (pm10Grade1h) {
     case 1:
       return { bgColor: 'indigo', bgColorIdx: 8, message: '좋음' };
     case 2:
