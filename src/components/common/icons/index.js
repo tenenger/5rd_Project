@@ -1,7 +1,7 @@
 export {
   FaRegStar as EmptyStarIcon,
   FaStar as FilledStarIcon,
-  FaMapMarkerAlt as MyLocationIcon,
+  FaMapMarkerAlt as MainIcon,
   FaMapMarkedAlt as AllLocationIcon,
   FaRegUserCircle as UserIcon,
 } from 'react-icons/fa';

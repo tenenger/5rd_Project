@@ -2,15 +2,13 @@ import { useState } from 'react';
 
 import { Carousel, LoadingModal } from 'components/common';
 import { WeatherCard } from 'components/UI';
+import Banner from 'components/UI/main/Banner';
 import useAddress from 'hooks/useAddress';
 import useFilterSidoDust from 'hooks/useFilterSidoDust';
 import { sortSidoDust } from 'utils/dust';
 import { SIDO_NAMES } from 'constants';
 
-import Banner from './Banner';
-import { SLayout } from './MyLocation.style';
-
-const MyLocation = () => {
+const Main = () => {
   const { address } = useAddress();
   const [tags, setTags] = useState([
     SIDO_NAMES.find(({ title }) => address?.[0].region_1depth_name.includes(title))?.title ?? '서울',
@@ -38,7 +36,7 @@ const MyLocation = () => {
       {isLoading ? (
         <LoadingModal />
       ) : (
-        <SLayout>
+        <>
           <Carousel autoplay />
           <Banner
             handleFilterItemClick={handleFilterItemClick}
@@ -47,10 +45,10 @@ const MyLocation = () => {
             tags={tags}
           />
           <WeatherCard data={sortSidoDust(sorted, data)} isShow={false} />
-        </SLayout>
+        </>
       )}
     </>
   );
 };
 
-export default MyLocation;
+export default Main;

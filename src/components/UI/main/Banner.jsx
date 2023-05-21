@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 import { DropDown, Tag } from 'components/common';
+import { SIDO_NAMES } from 'constants';
 
 import { SContainer } from './Banner.style';
-import { SIDO_NAMES } from '../../constants';
 
 const SORT_DATA = [
   { id: 1, subject: 'dictionary', order: 'asc', title: '사전 오름차순' },
