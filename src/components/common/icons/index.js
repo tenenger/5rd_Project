@@ -13,4 +13,7 @@ export {
   BsChevronDown as ArrowDown,
   BsChevronUp as ArrowUp,
 } from 'react-icons/bs';
+
 export { IoIosArrowBack as ArrowLeft, IoIosArrowForward as ArrowRight } from 'react-icons/io';
+
+export { AiOutlineVerticalAlignTop as ScrollToTopIcon } from 'react-icons/ai';

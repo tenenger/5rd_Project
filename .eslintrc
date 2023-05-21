@@ -85,7 +85,7 @@
           { "pattern": "react-hook-form", "group": "external", "position": "before" },
           { "pattern": "{@hookform/resolvers,@hookform/resolvers/**}", "group": "external", "position": "before" },
           { "pattern": "zod", "group": "external", "position": "before" },
-          { "pattern": "react-daum-postcode", "group": "external", "position": "before" },
+          { "pattern": "lodash", "group": "external", "position": "before" },
 
           // { "pattern": "@mantine/**", "group": "unknown", "position": "before" },
           { "pattern": "@mantine/core", "group": "unknown", "position": "before" },
