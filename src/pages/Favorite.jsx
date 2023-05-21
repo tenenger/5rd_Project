@@ -2,7 +2,7 @@ import { useRecoilValue } from 'recoil';
 
 import { LoadingModal } from 'components/common';
 import { WeatherCard } from 'components/UI';
-import useFavoritesSidoDust from 'hooks/useFavoritesSidoDust';
+import { useFavoritesSidoDust } from 'hooks';
 import { favoriteGuRoState } from 'recoil/atoms/dust';
 
 const Favorite = () => {

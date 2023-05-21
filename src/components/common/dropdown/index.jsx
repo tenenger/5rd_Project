@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { ArrowDown, ArrowUp } from 'components/common/icons';
-import useOnClickOutSide from 'hooks/useOnClickOutSide';
+import { useOnClickOutSide } from 'hooks';
 
 import { SLayout, SDropDownSelect, SDropDownList } from './DropDown.style';
 

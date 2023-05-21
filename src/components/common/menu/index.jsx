@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import useOnClickOutSide from 'hooks/useOnClickOutSide';
+import { useOnClickOutSide } from 'hooks';
 
 import { SItem, SLayout } from './Menu.style';
 

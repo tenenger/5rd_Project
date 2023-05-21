@@ -3,8 +3,7 @@ import { useState } from 'react';
 import { Carousel, LoadingModal } from 'components/common';
 import { WeatherCard } from 'components/UI';
 import Banner from 'components/UI/main/Banner';
-import useAddress from 'hooks/useAddress';
-import useFilterSidoDust from 'hooks/useFilterSidoDust';
+import { useAddress, useFilterSidoDust } from 'hooks';
 import { sortSidoDust } from 'utils/dust';
 import { SIDO_NAMES } from 'constants';
 
