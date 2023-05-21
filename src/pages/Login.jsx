@@ -84,7 +84,7 @@ const Login = () => {
         />
         <SLabel>
           <input checked={isCheck} type="checkbox" onChange={e => setCheck(e.target.checked)} />
-          <CheckBoxSquareIcon color={isCheck ? theme.blue[6] : theme.gray[2]} size="2.3rem" />
+          <CheckBoxSquareIcon color={isCheck ? theme.colors.blue[6] : theme.colors.gray[2]} size="2.3rem" />
           <span>이메일 기억하기</span>
         </SLabel>
         <Button bgColor="blue.6" color="white" type="submit">

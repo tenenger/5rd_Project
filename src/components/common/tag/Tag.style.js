@@ -15,9 +15,9 @@ export const SLayout = styled.ul`
     padding: 5px 10px;
 
     font-size: 1.4rem;
-    color: ${props => props.theme.white[0]};
+    color: ${props => props.theme.colors.white[0]};
     border-radius: 5px;
-    background: ${props => props.theme.violet[6]};
+    background: ${props => props.theme.colors.violet[6]};
   }
 `;
 
@@ -30,9 +30,9 @@ export const SCloseBtn = styled.button`
   align-items: center;
 
   font-size: 1.2rem;
-  color: ${props => props.theme.violet[6]};
+  color: ${props => props.theme.colors.violet[6]};
   border-radius: 50%;
-  background: ${props => props.theme.white[0]};
+  background: ${props => props.theme.colors.white[0]};
 
   line-height: 16px;
   cursor: pointer;

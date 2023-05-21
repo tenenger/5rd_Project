@@ -1,4 +1,20 @@
-export const defaultTheme = {
+const deviceSizes = {
+  vertical_mobile: 375,
+  horizontal_mobile: 576,
+  tablet: 768,
+  laptop: 992,
+  large_laptop: 1200,
+};
+
+const devices = {
+  xs: `screen and (max-width: ${deviceSizes.vertical_mobile}px)`,
+  sm: `screen and (max-width: ${deviceSizes.horizontal_mobile}px)`,
+  md: `screen and (max-width: ${deviceSizes.tablet}px)`,
+  lg: `screen and (max-width: ${deviceSizes.laptop}px)`,
+  xl: `screen and (max-width: ${deviceSizes.large_laptop}px)`,
+};
+
+const colors = {
   white: {
     0: '#ffffff',
   },
@@ -162,3 +178,10 @@ export const defaultTheme = {
     9: '#d9480f',
   },
 };
+
+const defaultTheme = {
+  devices,
+  colors,
+};
+
+export default defaultTheme;

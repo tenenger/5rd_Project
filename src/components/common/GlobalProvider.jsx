@@ -3,8 +3,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 
-import { defaultTheme } from 'constants/theme';
-import GlobalStyle from 'styles/global.style';
+import { GlobalStyle, defaultTheme } from 'styles';
 
 export const queryClient = new QueryClient();
 

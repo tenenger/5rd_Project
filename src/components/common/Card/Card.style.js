@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 export const SLayout = styled.div`
-  max-width: 300px;
   min-height: 141px;
-  background: ${({ theme, bgColor, bgColorIdx }) => theme[bgColor][bgColorIdx]};
+  background: ${({ theme, bgColor, bgColorIdx }) => theme.colors[bgColor][bgColorIdx]};
   color: white;
   line-height: 2;
 `;

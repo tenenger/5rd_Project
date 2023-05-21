@@ -33,10 +33,10 @@ export const SArrow = styled.svg`
   top: calc(50% - ${props => parseInt(props.size, 10) / 2}rem);
   cursor: pointer;
 
-  color: ${props => props.theme.gray[5]};
+  color: ${props => props.theme.colors.gray[5]};
 
   :hover {
-    color: ${props => props.theme.gray[3]};
+    color: ${props => props.theme.colors.gray[3]};
   }
 `;
 

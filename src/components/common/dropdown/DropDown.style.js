@@ -13,7 +13,7 @@ export const SDropDownSelect = styled.div`
 
   font-size: 1.6rem;
   font-weight: bold;
-  border: 0.5px solid ${props => props.theme.gray[2]};
+  border: 0.5px solid ${props => props.theme.colors.gray[2]};
   border-radius: 5px;
 
   cursor: pointer;
@@ -26,7 +26,7 @@ export const SDropDownList = styled.ul`
   position: absolute;
 
   font-size: 1.6rem;
-  background-color: ${props => props.theme.white[0]};
+  background-color: ${props => props.theme.colors.white[0]};
 
   overflow-y: scroll;
   cursor: pointer;
@@ -44,7 +44,7 @@ export const SDropDownList = styled.ul`
     }
 
     :hover {
-      background-color: ${props => props.theme.gray[2]};
+      background-color: ${props => props.theme.colors.gray[2]};
     }
   }
 `;
