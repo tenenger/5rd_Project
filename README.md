@@ -23,7 +23,7 @@ npm install
 ### node 서버 실행
 
 ```
-npm run dev
+npm start
 ```
 
 <br/>
@@ -71,22 +71,18 @@ npm run dev
 |          |               |                                            |
 | deploy   | 배포          | deploy: Replay Netlify                     |
 
-### 키워드
-
-- Add : (처음, 새롭게) 추가
-- Remove : (기존) 삭제
-- Change : (기존) 삭제 -> (처음, 새롭게) 추가
-- Update : (기존) + (처음, 새롭게) 추가
-- Replay : (기존) 다시
-- Comment : (이외) 설명
-
 <br/>
 
 ## 7. 작업내용
 
 ### 2차 추가 작업
 
-- 로그인 페이지 UI 추가 및 이메일 기억하기 기능 추가 : 2023.05-12
+- ScrollToTop 컴포넌트 추가 : 2023.05.22
+- Tag 컴포넌트 추가 : 2023.05.18
+- DropDown 컴포넌트, 절대 경로, import 및 props 자동 정렬 ESLint 규칙 추가 : 2023.05.16
+- 메인 페이지 캐러셀 추가 : 2023.05.15
+- 단계별 회원가입 UI 추가 : 2023.05.14
+- 로그인 페이지 UI 추가 및 이메일 기억하기 기능 추가 : 2023.05.12
 - React-Query의 캐시 기능, Lazy API 통신을 활용하여 로딩 감소 : 2023.05.08
 - 위치 액세스 거부했을 떄 무한 로딩인 현상 수정 : 2023.05.08
 - redux -> recoil, fontawesome -> react-icons, CRA -> vite 라이브러리 변경 : 2023.05.08
