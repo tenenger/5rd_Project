@@ -1,15 +1,17 @@
 import { atom } from 'recoil';
 
-const FAVORITE_GURO_KEY = 'favoriteGuRoState';
+import { getLocalStorage, setLocalStorage } from 'utils/localStorage';
 
-const localStorageEffect = ({ onSet }) => {
-  onSet(newState => {
-    localStorage.setItem(FAVORITE_GURO_KEY, JSON.stringify(newState));
-  });
-};
+const FAVORITE_GURO_KEY = 'favoriteGuRoState';
 
 export const favoriteGuRoState = atom({
   key: FAVORITE_GURO_KEY,
-  default: JSON.parse(localStorage.getItem(FAVORITE_GURO_KEY)) ?? {},
-  effects: [localStorageEffect],
+  default: getLocalStorage(FAVORITE_GURO_KEY) ?? {},
+  effects: [
+    ({ onSet }) => {
+      onSet(newState => {
+        setLocalStorage(FAVORITE_GURO_KEY, newState);
+      });
+    },
+  ],
 });
