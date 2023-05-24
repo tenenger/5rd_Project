@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 import { Carousel, LoadingModal } from 'components/common';
-import { WeatherCard } from 'components/UI';
+import { DustModal, WeatherCard } from 'components/UI';
 import Banner from 'components/UI/main/Banner';
-import { useAddress, useFilterSidoDust } from 'hooks';
+import { useAddress, useFilterSidoDust, useModal } from 'hooks';
 import { sortSidoDust } from 'utils/dust';
 import { SIDO_NAMES } from 'constants';
 
@@ -13,7 +13,9 @@ const Main = () => {
     SIDO_NAMES.find(({ title }) => address?.[0].region_1depth_name.includes(title))?.title ?? '서울',
   ]);
   const [sorted, setSorted] = useState({ subject: '', order: '' });
+  const [selected, setSelected] = useState({});
   const { data, isLoading } = useFilterSidoDust(tags);
+  const { isOpen, handleCloseClick, handleToggleClick } = useModal();
 
   const handleRemoveTagClick = sido => setTags(tags.filter(tag => tag !== sido));
 
@@ -30,12 +32,18 @@ const Main = () => {
       order,
     }));
 
+  const handleSelectCardClick = selected => {
+    setSelected(selected);
+    handleToggleClick();
+  };
+
   return (
     <>
       {isLoading ? (
         <LoadingModal />
       ) : (
         <>
+          <DustModal handleCloseClick={handleCloseClick} isOpen={isOpen} selected={selected} />
           <Carousel autoplay />
           <Banner
             handleFilterItemClick={handleFilterItemClick}
@@ -43,7 +51,7 @@ const Main = () => {
             handleSortItemClick={handleSortItemClick}
             tags={tags}
           />
-          <WeatherCard data={sortSidoDust(sorted, data)} isShow={false} />
+          <WeatherCard data={sortSidoDust(sorted, data)} handleSelectCardClick={handleSelectCardClick} isShow={false} />
         </>
       )}
     </>

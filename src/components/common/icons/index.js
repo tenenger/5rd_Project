@@ -17,3 +17,5 @@ export {
 export { IoIosArrowBack as ArrowLeft, IoIosArrowForward as ArrowRight } from 'react-icons/io';
 
 export { AiOutlineVerticalAlignTop as ScrollToTopIcon } from 'react-icons/ai';
+
+export { TbCurrentLocation as MeasureLocationIcon } from 'react-icons/tb';

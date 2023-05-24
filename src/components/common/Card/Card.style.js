@@ -5,6 +5,8 @@ export const SLayout = styled.div`
   background: ${({ theme, bgColor, bgColorIdx }) => theme.colors[bgColor][bgColorIdx]};
   color: white;
   line-height: 2;
+
+  cursor: pointer;
 `;
 
 export const SHeader = styled.div`

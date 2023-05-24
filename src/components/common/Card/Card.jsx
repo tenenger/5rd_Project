@@ -8,12 +8,15 @@ import { favoriteGuRoState } from 'recoil/atoms/dust';
 
 import { SLayout, SSido, SDataTime, SMese, SMessage, SHeader, SIconButton } from './Card.style';
 
-const Card = ({ item: { sidoName, stationName, dataTime, pm10Value, pm10Grade1h } }) => {
+const Card = ({ item, handleSelectCardClick }) => {
+  const { sidoName, stationName, dataTime, pm10Value, pm10Grade1h } = item;
   const [favorites, setFavorites] = useRecoilState(favoriteGuRoState);
   const [isFavorite, setIsFavorite] = useState(favorites[sidoName]?.includes(stationName) ?? false);
   const { bgColor, bgColorIdx, message } = getDustMessageFromGrade(+pm10Grade1h);
 
-  const handleFavoriteClick = () => {
+  const handleFavoriteClick = e => {
+    e.stopPropagation();
+
     setFavorites(
       isFavorite
         ? { ...favorites, [sidoName]: favorites[sidoName].filter(favorite => favorite !== stationName) }
@@ -23,7 +26,7 @@ const Card = ({ item: { sidoName, stationName, dataTime, pm10Value, pm10Grade1h 
   };
 
   return (
-    <SLayout {...{ bgColor, bgColorIdx }}>
+    <SLayout {...{ bgColor, bgColorIdx }} onClick={() => handleSelectCardClick(item)}>
       <SHeader>
         <span>{stationName}</span>
         <SSido>{sidoName}</SSido>

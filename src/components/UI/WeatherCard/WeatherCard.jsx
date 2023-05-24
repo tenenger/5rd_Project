@@ -3,7 +3,7 @@ import { SIDO_NAMES } from 'constants';
 
 import { SCardLayout, SSelect } from './WeatherCard.style';
 
-const WeatherCard = ({ data, isShow, dosi, handleSelectChange }) => (
+const WeatherCard = ({ data, isShow, dosi, handleSelectChange, handleSelectCardClick }) => (
   <>
     {isShow && (
       <SSelect defaultValue={dosi} onChange={handleSelectChange}>
@@ -14,7 +14,7 @@ const WeatherCard = ({ data, isShow, dosi, handleSelectChange }) => (
     )}
     <SCardLayout>
       {data.map(item => (
-        <Card key={item.stationName} item={item} />
+        <Card key={item.stationName} handleSelectCardClick={handleSelectCardClick} item={item} />
       ))}
     </SCardLayout>
   </>
