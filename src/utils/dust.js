@@ -22,8 +22,9 @@ export const sortSidoDust = (sorted, sidoDust) => {
     case 'dust':
       return sidoDust.sort(
         (a, b) =>
-          (a.pm10Value === '-' || a.pm10Value === null ? 0 : +a.pm10Value) -
-          (b.pm10Value === '-' || b.pm10Value === null ? 0 : +b.pm10Value)
+          ((a.pm10Value === '-' || a.pm10Value === null ? 0 : +a.pm10Value) -
+            (b.pm10Value === '-' || b.pm10Value === null ? 0 : +b.pm10Value)) *
+          delta
       );
     default:
       return sidoDust;
