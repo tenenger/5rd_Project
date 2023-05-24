@@ -1,9 +1,9 @@
 export const getDustMessageFromGrade = grade => {
   switch (grade) {
     case 1:
-      return { bgColor: 'indigo', bgColorIdx: 8, message: '좋음' };
+      return { bgColor: 'blue', bgColorIdx: 5, message: '좋음' };
     case 2:
-      return { bgColor: 'lime', bgColorIdx: 5, message: '보통' };
+      return { bgColor: 'green', bgColorIdx: 5, message: '보통' };
     case 3:
       return { bgColor: 'orange', bgColorIdx: 5, message: '나쁨' };
     case 4:
