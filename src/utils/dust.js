@@ -1,5 +1,5 @@
-export const getDustMessageFromGrade = pm10Grade1h => {
-  switch (pm10Grade1h) {
+export const getDustMessageFromGrade = grade => {
+  switch (grade) {
     case 1:
       return { bgColor: 'indigo', bgColorIdx: 8, message: '좋음' };
     case 2:
@@ -9,7 +9,7 @@ export const getDustMessageFromGrade = pm10Grade1h => {
     case 4:
       return { bgColor: 'pink', bgColorIdx: 7, message: '매우 나쁨' };
     default:
-      return { bgColor: 'gray', bgColorIdx: 8, message: '측정소 고장' };
+      return { bgColor: 'gray', bgColorIdx: 8, message: '측정 불가' };
   }
 };
 
@@ -20,7 +20,11 @@ export const sortSidoDust = (sorted, sidoDust) => {
     case 'dictionary':
       return sidoDust.sort((a, b) => (a.stationName > b.stationName ? 1 * delta : -1 * delta));
     case 'dust':
-      return sidoDust.sort((a, b) => ((a.pm10Value || 0) - (b.pm10Value || 0)) * delta);
+      return sidoDust.sort(
+        (a, b) =>
+          (a.pm10Value === '-' || a.pm10Value === null ? 0 : +a.pm10Value) -
+          (b.pm10Value === '-' || b.pm10Value === null ? 0 : +b.pm10Value)
+      );
     default:
       return sidoDust;
   }
