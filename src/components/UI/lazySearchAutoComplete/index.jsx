@@ -7,9 +7,9 @@ const LazySearchAutoComplete = ({ filter, isShow, onItemClick }) => {
   return (
     <AutoComplete isShow={isShow}>
       {!isLoading &&
-        sidoDusts.map(({ stationName }) => (
-          <li key={stationName}>
-            <button onClick={() => onItemClick(stationName)}>{stationName}</button>
+        sidoDusts.map(sidoDust => (
+          <li key={sidoDust.stationName}>
+            <button onClick={() => onItemClick(sidoDust)}>{sidoDust.stationName}</button>
           </li>
         ))}
     </AutoComplete>

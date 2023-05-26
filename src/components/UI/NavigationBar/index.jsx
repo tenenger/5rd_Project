@@ -5,7 +5,7 @@ import { debounce } from 'lodash';
 
 import { Menu, Logo } from 'components/common';
 import { SearchIcon, UserIcon } from 'components/common/icons';
-import { useOnClickOutSide } from 'hooks';
+import { useDustModal, useOnClickOutSide } from 'hooks';
 import { PATH } from 'constants';
 
 import { SLayout, SContainer, SUtils, SSearchBar, SearchInput } from './NavigationBar.style';
@@ -16,6 +16,7 @@ const SearchBar = ({ icon }) => {
   const [isSearch, setIsSearch] = useState(false);
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('');
+  const { handleSetSidoDust, handleOpenClick } = useDustModal();
 
   const debounced = useMemo(() => debounce(value => setFilter(value), 300), []);
 
@@ -28,9 +29,11 @@ const SearchBar = ({ icon }) => {
 
   const handleSearchFocus = () => setIsSearch(true);
   const handleSearchBlur = () => setIsSearch(false);
-  const handleAutoCompleteItemClick = value => {
-    setSearch(value);
+  const handleAutoCompleteItemClick = sidoDust => {
+    setSearch(sidoDust.stationName);
     handleSearchBlur();
+    handleOpenClick();
+    handleSetSidoDust(sidoDust);
   };
   const ref = useOnClickOutSide(handleSearchBlur);
 

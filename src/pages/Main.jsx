@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Carousel, LoadingModal } from 'components/common';
 import { DustModal, WeatherCard } from 'components/UI';
 import Banner from 'components/UI/main/Banner';
-import { useAddress, useFilterSidoDust, useModal } from 'hooks';
+import { useAddress, useFilterSidoDust, useDustModal } from 'hooks';
 import { sortSidoDust } from 'utils/dust';
 import { SIDO_NAMES } from 'constants';
 
@@ -15,7 +15,7 @@ const Main = () => {
   const [sorted, setSorted] = useState({ subject: '', order: '' });
   const [selected, setSelected] = useState({});
   const { data, isLoading } = useFilterSidoDust(tags);
-  const { isOpen, handleCloseClick, handleToggleClick } = useModal();
+  const { handleSetSidoDust, handleToggleClick } = useDustModal();
 
   const handleRemoveTagClick = sido => setTags(tags.filter(tag => tag !== sido));
 
@@ -34,6 +34,7 @@ const Main = () => {
 
   const handleSelectCardClick = selected => {
     setSelected(selected);
+    handleSetSidoDust(selected);
     handleToggleClick();
   };
 
@@ -43,7 +44,7 @@ const Main = () => {
         <LoadingModal />
       ) : (
         <>
-          <DustModal handleCloseClick={handleCloseClick} isOpen={isOpen} selected={selected} />
+          <DustModal selected={selected} />
           <Carousel autoplay />
           <Banner
             handleFilterItemClick={handleFilterItemClick}

@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 
 import { Line, Modal } from 'components/common';
 import { MainIcon, MeasureLocationIcon } from 'components/common/icons';
+import { useDustModal } from 'hooks';
 import { getDustMessageFromGrade } from 'utils/dust';
 
 import {
@@ -20,30 +21,31 @@ import {
   SValue,
 } from './DustModal.style';
 
-const DustModal = ({
-  selected: {
-    dataTime,
-    sidoName,
-    stationName,
-    mangName,
-    khaiGrade,
-    khaiValue,
-    so2Grade,
-    so2Value,
-    coGrade,
-    coValue,
-    o3Grade,
-    o3Value,
-    no2Grade,
-    no2Value,
-    pm25Grade1h,
-    pm25Value,
-    pm10Grade1h,
-    pm10Value,
-  },
-  isOpen,
-  handleCloseClick,
-}) => {
+const DustModal = () => {
+  const {
+    sidoDust: {
+      dataTime,
+      sidoName,
+      stationName,
+      mangName,
+      khaiGrade,
+      khaiValue,
+      so2Grade,
+      so2Value,
+      coGrade,
+      coValue,
+      o3Grade,
+      o3Value,
+      no2Grade,
+      no2Value,
+      pm25Grade1h,
+      pm25Value,
+      pm10Grade1h,
+      pm10Value,
+    },
+    handleCloseClick,
+    isOpen,
+  } = useDustModal();
   const DustAreaData = [
     { title: '미세먼지', value: pm10Value, status: getDustMessageFromGrade(+pm10Grade1h) },
     { title: '초미세먼지', value: pm25Value, status: getDustMessageFromGrade(+pm25Grade1h) },
