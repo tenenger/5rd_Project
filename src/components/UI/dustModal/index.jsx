@@ -11,6 +11,7 @@ import {
   SDescription,
   SDustArea,
   SDustValueArea,
+  SDustValueDetail,
   SLocationArea,
   SLogo,
   SNoticeArea,
@@ -74,10 +75,10 @@ const DustModal = () => {
               {idx % 2 === 1 && <Line height="40px" width="0.5px" />}
               <div>
                 <STitle>{title}</STitle>
-                <div>
+                <SDustValueDetail color={status.bgColor} colorIdx={status.bgColorIdx}>
                   <SValue>{value}</SValue>
                   <SStatus>{status.message}</SStatus>
-                </div>
+                </SDustValueDetail>
               </div>
             </Fragment>
           ))}

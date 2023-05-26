@@ -47,6 +47,15 @@ export const SDustValueArea = styled.div`
   }
 `;
 
+export const SDustValueDetail = styled.div`
+  ${SValue} {
+    color: ${({ theme, color, colorIdx }) => theme.colors[color][colorIdx]};
+  }
+  ${SStatus} {
+    color: ${({ theme, color, colorIdx }) => theme.colors[color][colorIdx]};
+  }
+`;
+
 export const SNoticeArea = styled.div`
   text-align: start;
 
