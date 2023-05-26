@@ -10,4 +10,5 @@ export { default as Tag } from './tag';
 export { default as ScrollToTop } from './scrollToTop';
 export { default as Modal } from './modal';
 export { default as CloseButton } from './closeButton';
+export { default as AutoComplete } from './autoComplete';
 export { default as FormInput } from './sign/FormInput';
