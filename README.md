@@ -47,8 +47,13 @@ npm start
 
 ![Javascript](https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![Recoil](https://img.shields.io/badge/recoil-000?style=for-the-badge&logo=recoil&logoColor=white)
+![Vite](https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![Styledcomponents](https://img.shields.io/badge/Styledcomponents-DB7093?style=for-the-badge&logo=Styledcomponents&logoColor=white)
+![React-Query](https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=reactquery&logoColor=white)
+![Recoil](https://img.shields.io/badge/recoil-000?style=for-the-badge&logo=recoil&logoColor=white)
+![React-Hook-Form](https://img.shields.io/badge/reactHookForm-EC5990?style=for-the-badge&logo=reacthookform&logoColor=white)
+![Zod](https://img.shields.io/badge/zod-3492FF?style=for-the-badge&logo=zod&logoColor=white)
+
 
 <br/>
 
