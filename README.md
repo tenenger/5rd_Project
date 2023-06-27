@@ -8,7 +8,7 @@
 
 - [Demo](https://finedust-weather.netlify.app/) : **기획 변경에 따른 기능 제한**
 - GitHub : https://github.com/tenenger7125/TOY_PROJECT_FINEDUST_WEATHER
-- 작업 기록 : [미세먼지](https://www.notion.so/f7e3126674684676ad2e980d742cec5c?pvs=21)
+- 작업 기록 : https://www.notion.so/f7e3126674684676ad2e980d742cec5c?pvs=21
 
 <br/>
 
